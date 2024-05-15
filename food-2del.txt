@@ -1,0 +1,3329 @@
+compelte-food-or
+
+
+
+assets.js
+
+import basket_icon from './basket_icon.png'
+import logo from './logo.png'
+import header_img from './header_img.png'
+import search_icon from './search_icon.png'
+import menu_1 from './menu_1.png'
+import menu_2 from './menu_2.png'
+import menu_3 from './menu_3.png'
+import menu_4 from './menu_4.png'
+import menu_5 from './menu_5.png'
+import menu_6 from './menu_6.png'
+import menu_7 from './menu_7.png'
+import menu_8 from './menu_8.png'
+
+import food_1 from './food_1.png'
+import food_2 from './food_2.png'
+import food_3 from './food_3.png'
+import food_4 from './food_4.png'
+import food_5 from './food_5.png'
+import food_6 from './food_6.png'
+import food_7 from './food_7.png'
+import food_8 from './food_8.png'
+import food_9 from './food_9.png'
+import food_10 from './food_10.png'
+import food_11 from './food_11.png'
+import food_12 from './food_12.png'
+import food_13 from './food_13.png'
+import food_14 from './food_14.png'
+import food_15 from './food_15.png'
+import food_16 from './food_16.png'
+import food_17 from './food_17.png'
+import food_18 from './food_18.png'
+import food_19 from './food_19.png'
+import food_20 from './food_20.png'
+import food_21 from './food_21.png'
+import food_22 from './food_22.png'
+import food_23 from './food_23.png'
+import food_24 from './food_24.png'
+import food_25 from './food_25.png'
+import food_26 from './food_26.png'
+import food_27 from './food_27.png'
+import food_28 from './food_28.png'
+import food_29 from './food_29.png'
+import food_30 from './food_30.png'
+import food_31 from './food_31.png'
+import food_32 from './food_32.png'
+
+import add_icon_white from './add_icon_white.png'
+import add_icon_green from './add_icon_green.png'
+import remove_icon_red from './remove_icon_red.png'
+import app_store from './app_store.png'
+import play_store from './play_store.png'
+import linkedin_icon from './linkedin_icon.png'
+import facebook_icon from './facebook_icon.png'
+import twitter_icon from './twitter_icon.png'
+import cross_icon from './cross_icon.png'
+import selector_icon from './selector_icon.png'
+import rating_starts from './rating_starts.png'
+import profile_icon from './profile_icon.png'
+import bag_icon from './bag_icon.png'
+import logout_icon from './logout_icon.png'
+import parcel_icon from './parcel_icon.png'
+
+export const assets = {
+    logo,
+    basket_icon,
+    header_img,
+    search_icon,
+    rating_starts,
+    add_icon_green,
+    add_icon_white,
+    remove_icon_red,
+    app_store,
+    play_store,
+    linkedin_icon,
+    facebook_icon,
+    twitter_icon,
+    cross_icon,
+    selector_icon,
+    profile_icon,
+    logout_icon,
+    bag_icon,
+    parcel_icon
+}
+
+export const menu_list = [
+    {
+        menu_name: "Salad",
+        menu_image: menu_1
+    },
+    {
+        menu_name: "Rolls",
+        menu_image: menu_2
+    },
+    {
+        menu_name: "Deserts",
+        menu_image: menu_3
+    },
+    {
+        menu_name: "Sandwich",
+        menu_image: menu_4
+    },
+    {
+        menu_name: "Cake",
+        menu_image: menu_5
+    },
+    {
+        menu_name: "Pure Veg",
+        menu_image: menu_6
+    },
+    {
+        menu_name: "Pasta",
+        menu_image: menu_7
+    },
+    {
+        menu_name: "Noodles",
+        menu_image: menu_8
+    }]
+
+export const food_list = [
+    {
+        _id: "1",
+        name: "Greek salad",
+        image: food_1,
+        price: 12,
+        description: "food is fule of body",
+        category: "Salad"
+    },
+    {
+        _id: "2",
+        name: "Veg salad",
+        image: food_2,
+        price: 18,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Salad"
+    }, {
+        _id: "3",
+        name: "Clover Salad",
+        image: food_3,
+        price: 16,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Salad"
+    }, {
+        _id: "4",
+        name: "Chicken Salad",
+        image: food_4,
+        price: 24,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Salad"
+    }, {
+        _id: "5",
+        name: "Lasagna Rolls",
+        image: food_5,
+        price: 14,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Rolls"
+    }, {
+        _id: "6",
+        name: "Peri Peri Rolls",
+        image: food_6,
+        price: 12,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Rolls"
+    }, {
+        _id: "7",
+        name: "Chicken Rolls",
+        image: food_7,
+        price: 20,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Rolls"
+    }, {
+        _id: "8",
+        name: "Veg Rolls",
+        image: food_8,
+        price: 15,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Rolls"
+    }, {
+        _id: "9",
+        name: "Ripple Ice Cream",
+        image: food_9,
+        price: 14,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Deserts"
+    }, {
+        _id: "10",
+        name: "Fruit Ice Cream",
+        image: food_10,
+        price: 22,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Deserts"
+    }, {
+        _id: "11",
+        name: "Jar Ice Cream",
+        image: food_11,
+        price: 10,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Deserts"
+    }, {
+        _id: "12",
+        name: "Vanilla Ice Cream",
+        image: food_12,
+        price: 12,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Deserts"
+    },
+    {
+        _id: "13",
+        name: "Chicken Sandwich",
+        image: food_13,
+        price: 12,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Sandwich"
+    },
+    {
+        _id: "14",
+        name: "Vegan Sandwich",
+        image: food_14,
+        price: 18,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Sandwich"
+    }, {
+        _id: "15",
+        name: "Grilled Sandwich",
+        image: food_15,
+        price: 16,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Sandwich"
+    }, {
+        _id: "16",
+        name: "Bread Sandwich",
+        image: food_16,
+        price: 24,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Sandwich"
+    }, {
+        _id: "17",
+        name: "Cup Cake",
+        image: food_17,
+        price: 14,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Cake"
+    }, {
+        _id: "18",
+        name: "Vegan Cake",
+        image: food_18,
+        price: 12,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Cake"
+    }, {
+        _id: "19",
+        name: "Butterscotch Cake",
+        image: food_19,
+        price: 20,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Cake"
+    }, {
+        _id: "20",
+        name: "Sliced Cake",
+        image: food_20,
+        price: 15,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Cake"
+    }, {
+        _id: "21",
+        name: "Garlic Mushroom ",
+        image: food_21,
+        price: 14,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Pure Veg"
+    }, {
+        _id: "22",
+        name: "Fried Cauliflower",
+        image: food_22,
+        price: 22,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Pure Veg"
+    }, {
+        _id: "23",
+        name: "Mix Veg Pulao",
+        image: food_23,
+        price: 10,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Pure Veg"
+    }, {
+        _id: "24",
+        name: "Rice Zucchini",
+        image: food_24,
+        price: 12,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Pure Veg"
+    },
+    {
+        _id: "25",
+        name: "Cheese Pasta",
+        image: food_25,
+        price: 12,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Pasta"
+    },
+    {
+        _id: "26",
+        name: "Tomato Pasta",
+        image: food_26,
+        price: 18,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Pasta"
+    }, {
+        _id: "27",
+        name: "Creamy Pasta",
+        image: food_27,
+        price: 16,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Pasta"
+    }, {
+        _id: "28",
+        name: "Chicken Pasta",
+        image: food_28,
+        price: 24,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Pasta"
+    }, {
+        _id: "29",
+        name: "Buttter Noodles",
+        image: food_29,
+        price: 14,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Noodles"
+    }, {
+        _id: "30",
+        name: "Veg Noodles",
+        image: food_30,
+        price: 12,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Noodles"
+    }, {
+        _id: "31",
+        name: "Somen Noodles",
+        image: food_31,
+        price: 20,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Noodles"
+    }, {
+        _id: "32",
+        name: "Cooked Noodles",
+        image: food_32,
+        price: 15,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Noodles"
+    }
+]
+//
+.app-download{
+    margin: auto auto;
+    margin-top: 100px;
+    font-size: max(3vw,20px);
+    text-align: center;
+    align-items: center;
+}
+.app-download-platform{
+    display: flex;
+    justify-content: center;
+    gap: max(2vw,20px);
+    margin-top: 40px;
+}
+.app-download-platform img{
+    width: max(20vw,140px);
+    max-width: 180px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.app-download-platform img:hover{
+    transform: scale(1.05);
+}
+
+#
+import React from 'react'
+import './AppDownload.css'
+import { assets } from '../../assets/assets'
+const AppDownload = () => {
+  return (
+    <div className='app-download' id='app-download'>
+        <p>free download  <br />food-app</p>
+      <div className="app-download-platform">
+        <img src={assets.play_store} alt="" />
+        <img src={assets.app_store} alt="" />
+      </div>
+    </div>
+  )
+}
+
+export default AppDownload
+//
+.contact{
+    gap: 20px;
+    display: flex;
+    margin-top: 80px;
+    background-color: rgb(12, 13, 18);
+    color: rgb(255, 253, 253);
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px 8vh;
+    margin-top: 100px;
+}
+.contact-title{
+    position: relative;
+}
+
+.contact-title h1{
+    padding: 0px 30px;
+    font-size: 70px;
+    font-weight: 600;
+}
+.contact-title img{
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+}
+.contact-section{
+    display: flex;
+    gap: 150px;
+}
+.contact-section-left{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.contact-section-left h1{
+    font-size: 80px;
+    font-weight: 7600;
+    background: linear-gradient(267deg, rgb(96, 159, 77), rgb(10, 17, 233), rgb(31, 30, 31));
+    cursor: pointer;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.contact-section-left p{
+    font-size: 30px;
+    font-weight: 500;
+    background: linear-gradient(267deg, rgb(69, 230, 20), rgb(10, 17, 233), rgb(199, 40, 199));
+    cursor: pointer;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.contact-details{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: white;  
+    font-size: 22px;
+}
+.contact-detail{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.contact-right{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+.contact-right label{
+    font-weight: 500;
+    font-size: 22px;
+    color: white;
+}
+.contact-right input{
+    border: none;
+    width: 600px;
+    height: 78px;
+    border-radius: 4px;
+    background: #32323c;
+    padding-left: 20px;
+    color: #a0a0a0;
+    font-size: 20px;
+    font-family: outfit;
+}
+.contact-right textarea{
+    border: none;
+    width: 600px;
+
+    border-radius: 4px;
+    background: #32323c;
+    padding-left: 20px;
+    color: #a0a0a0;
+    font-size: 20px;
+    font-family: outfit;
+}
+.contact-sumbit{
+    border-radius: 50px;
+    font-size: 22px;
+    text-align: center;
+    padding: 10px 50px;
+    color: white;
+    margin: auto;
+    border: none;
+    transition: 0.3s;
+    cursor: pointer;
+    border: 1px solid palegreen;
+    background: linear-gradient(267deg, rgb(201, 226, 101), rgb(211, 10, 233), rgb(12, 167, 223));
+}
+.contact-sumbit:hover{
+    background: linear-gradient(267deg, rgb(174, 178, 157), rgb(10, 233, 40), rgb(9, 5, 239));  
+}@media(max-width:768px){
+    .contact{
+        margin: 50px 60px;
+        gap: 50px;
+        align-items: start;
+    }
+    .contact-title h1{
+        padding: 0;
+        font-size: 50px;
+        font-weight: 60px;
+    }
+    .contact-title img{
+        width: 130px;
+        margin-right: -20px;
+    }
+    .contact-section{
+        flex-direction: column;
+    }
+    .contact-section-left h1{
+        font-size: 54px;
+    }
+    .contact-detail p{
+        font-size: 17px;
+    }
+    .contact-right label{
+     
+        font-size: 16px;
+        color: white;
+    }
+    .contact-right input{
+        border: none;
+        width: 500px;
+        height: 56px;
+        border-radius: 4px;
+        background: #32323c;
+        padding-left: 10px;
+        color: #a0a0a0;
+        font-size: 15px;
+        font-family: outfit;
+    }
+    .contact-right textarea{
+        border: none;
+        width: 450px;
+    
+        border-radius: 4px;
+        background: #32323c;
+        padding-left: 10px;
+        color: #a0a0a0;
+        font-size: 15px;
+        font-family: outfit;
+    }
+}
+#
+import React from 'react'
+import './Contact.css'
+import theme from '../../assets/theme_pattern.svg';
+import call from '../../assets/call_icon.svg';
+import location from '../../assets/location_icon.svg';
+import mail from '../../assets/mail_icon.svg';
+const Contact = () => {
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "fb157278-c020-42dd-bd36-1f503b4fd21b");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: json
+    }).then((res) => res.json());
+
+    if (res.success) {
+      alert(res.message)
+    }
+  };
+  return (
+    <div className='contact' id='contact'>
+      <div className="contact-title">
+        <h1>Get in Touch</h1>
+        <img src={theme}alt="" />
+      </div>
+      <div className="contact-section">
+        <div className="contact-section-left">
+            <h1>Let Talk</h1>
+            <p>you can talk with me by platform you like </p>
+            <div className="contact-details">
+            <div className='contact-detail'>
+                <img src={mail} alt="" /><p>sabonamarara53@gmail.com</p>
+            </div>
+            <div className='contact-detail'>
+            <img src={call} alt="" /><p>0928629040</p>
+            </div>
+            <div className='contact-detail'>
+            <img src={location} alt="" /><p>Yabello Ethiopia</p>
+            </div>
+            </div>
+        </div>
+        <form onSubmit={onSubmit} className='contact-right'>
+        <label htmlFor="">Your Name</label>
+        <input type="text" name='name' placeholder='Your Name' />
+        <label htmlFor="">Your Email</label>
+        <input type="email" name='email' placeholder='Your Email' />
+        <label htmlFor="">Write message</label>
+        <textarea name="message" rows="8" placeholder='Enter your message'></textarea>
+        <button className='contact-sumbit' type='submit'>Submit now</button>
+        </form>
+      </div>
+      <hr />
+    </div>
+  )
+}
+
+export default Contact
+
+
+//
+.explore-menu{
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
+
+}
+.explore-menu h1{
+    font-weight: 500;
+    color: rgb(43, 43, 43);
+}
+.explore-menu-text{
+    color: rgb(32, 32, 31);
+    font-size: 18px;
+    max-width: 60%;
+}
+.explore-menu-list{
+    display: flex;
+    overflow-x: scroll;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    margin: 20px 0px ;
+    gap: 30px;
+}
+.explore-menu-list::-webkit-scrollbar{
+    display: none;
+}
+.explore-menu-list-item img{
+    width: 7.5vw;
+    min-height: 80px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.explore-menu-list-item p{
+    font-size: 18px;
+    color: rgb(48, 48, 48);
+    margin-top: 5px;
+    cursor: pointer;
+    font-weight: 400;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.explore-menu hr{
+    margin:10px 0;
+    color: rgb(1, 22, 250);
+   
+}
+.explore-menu-list-item .active{
+    border: 4px solid rgb(92, 255, 71);
+    padding: 2px;
+}
+@media(max-width:1050px){
+    .explore-menu-text{
+      max-width:100%;
+        font-size: 14px;
+    }
+}
+#
+import React from 'react'
+import './ExploreMenu.css'
+import { menu_list } from '../../assets/assets'
+const ExploreMenu = ({ category, setCategory }) => {
+  return (
+    <div className='explore-menu' id="explore-menu">
+      <h1 id="page-title">Explore our product</h1>
+      <p>A food delivery system is essentially a network that connects restaurants (or other food vendors) with customers who want food delivered to their doorstep. It typically involves three main parties:</p>
+      <div className='explore-menu-list'>
+        {menu_list.map((item, index) => {
+          return (
+            <div onClick={() => setCategory(prev => prev === item.menu_name ? "All" : item.menu_name)} key={index} className='explore-menu-list-item' id='next'>
+              <img className={category === item.menu_name ? "active" : ""} src={item.menu_image} alt="" />
+              <p>{item.menu_name}</p>
+            </div>
+          )
+        })}
+        <hr />
+      </div>
+    </div>
+  )
+}
+export default ExploreMenu
+
+
+//
+.food-display{
+    margin-top: 30px;
+}
+.food-display h2{
+    font-size: max(2vw,24px);
+    font-weight: 600;
+}
+.food-display-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+    row-gap: 50px;
+    margin-top: 30px;
+    gap: 30px;
+}
+#
+
+import React, { useContext } from 'react'
+import './FoodDisplay.css'
+import { StoreContext } from '../../context/StoreContext'
+import FoodItem from '../FoodItem/FoodItem'
+const FoodDisplay = ({category}) => {
+  const {food_list}=useContext(StoreContext)
+  return (
+    <div className='food-display' id='food-display'>
+      <h1>Top dishes Near you</h1>
+      <div className="food-display-list">
+        {food_list.map((item,index)=>{
+          if (category==="All"|| category===item.category) {
+            return<FoodItem key={index} id={item._id}
+           name={item.name} description={item.description}
+            price={item.price} image={item.image}/>
+          }
+          
+        })}
+      </div>
+    </div>
+  )
+}
+
+export default FoodDisplay
+//
+.food-itme{
+    border-radius: 15px;
+    margin: auto;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgb(54, 53, 53);
+    transition: 0.4s;
+    animation: fadeIn 1s;
+}
+.food-item-image{
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+}
+.food-item-ifo{
+    padding: 20px;
+    
+}
+.food-item-rating {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.food-item-rating p{
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+}
+.food-item-rating img{
+    width: 70px;
+}
+.food-item-description{
+    font-size: 12px;
+    color: rgb(87, 84, 84);
+}
+.food-item-price{
+    margin:10px 0px;
+    font-size: 22px;
+    font-weight: 500;
+    color: tomato;
+}
+.food-item-counter{
+    position: relative;
+}
+.food-item-counter.add{
+    position: absolute;
+border-radius: 50px;
+width: 35px;
+bottom: 15px;
+right: 15px;
+cursor: pointer;
+}
+.food-item-counter{
+
+border-radius: 50px;
+align-items: center;
+bottom: 15px;
+right: 15px;
+display: flex;
+gap: 10px;
+padding: 6px;
+background-color: rgb(232, 239, 240); 
+margin-left: 100px;
+width: 110px;
+margin-top: -100px;
+}
+.food-item-counter img{
+    width: 35px;
+}
+#
+
+
+import React, { useContext,} from 'react'
+import './FoodItem.css'
+import { assets } from '../../assets/assets'
+import { StoreContext } from '../../context/StoreContext'
+const FoodItem = ({id,name,price,description,image}) => {
+
+  const{cartItem,addToCart,removeFromcart,url}=useContext(StoreContext)
+  return (
+    
+    <div className='food-itme'>
+   <div className="food-item-contener">
+    <img src={url+"/image/"+image} alt="" className="food-item-image" />
+    {!cartItem[id]?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white}/>
+    :<div className='food-item-counter'>
+      <img onClick={()=>removeFromcart(id)} src={assets.remove_icon_red} alt="" />
+      <p>{cartItem[id]}</p>
+      <img onClick={()=>addToCart(id)} src={assets.add_icon_green} alt="" />
+      </div>
+      }
+   </div>
+   <div className="food-item-ifo">
+    <div className="food-item-rating">
+    <p> {name} </p>
+    <img src={assets.rating_starts} alt="" />
+    </div>
+    <p className="food-item-description">{description} </p>
+    <p className="food-item-price">${price}</p>
+   </div>
+    </div>
+   
+  )
+}
+
+export default FoodItem
+
+
+//
+.footer{
+    gap: 20px;
+    display: flex;
+    margin-top: 80px;
+    background-color: rgb(79, 76, 76);
+    color: rgb(255, 253, 253);
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px 8vh;
+    margin-top: 100px;
+}
+.footer-content{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    width: 100%;
+    gap: 80px;
+}
+.footer-content-left,.footer-content-right,.footer-content-center{
+    display:flex;
+    align-items: start;
+    gap: 20px;
+    flex-direction: column;
+
+}
+.footer-content-left li,.footer-content-right li,.footer-content-center li{
+list-style: none;
+margin-bottom: 20px;
+}
+.footer-social-icon img{
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+hr{
+    width: 1000%;
+    color: green;
+    
+}
+.footer-content-center li{
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    
+}
+.footer-content-center li:hover{
+    background-color: rgb(210, 238, 229);
+    color: black;
+    font-weight: bold;
+}
+.footer-content-right li{
+    cursor: pointer;
+    font-size: 20px;
+
+}
+.footer-content-right li:hover{
+    background-color: rgb(255, 5, 1);
+    color: white;
+    font-weight: bold;
+}
+@media(max-width:1050px){
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+       gap: 35px;
+    }
+}
+
+#
+
+
+import React from 'react'
+import './Footer.css'
+import { assets } from '../../assets/assets'
+const Footer = () => {
+  return (
+    <div className='footer'id='footer'>
+      <div className="footer-content">
+<div className="footer-content-left">
+<img src={assets.logo} alt="" />
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus aperiam fuga velit tempore consequuntur! Deserunt quisquam modi ducimus minus accusantium, aperiam ipsam, dicta obcaecati quas vel doloribus pariatur eum quibusdam!</p>
+<div className="footer-social-icon">
+   <a href="https://facebok.com"><img src={assets.facebook_icon} alt="" /></a> 
+   <a href="https://twitter.com"><img src={assets.twitter_icon} alt="" /></a> 
+  <a href="https://linkedin.com"><img src={assets.linkedin_icon} alt="" /></a>  
+</div>
+</div>
+<div className="footer-content-center">
+    <h1>COMPANY</h1>
+    <ul>
+    <li>Home</li>
+    <li>About us</li>
+    <li>delevery</li>
+    <li>privacy policy</li>
+    </ul>
+</div>
+<div className="footer-content-right">
+    <h2>Get In Touch</h2>
+   <li>+125928629040</li>
+   <a href="#"><li>sabonamarara53@gmail.com</li></a>
+</div>
+<hr />
+      </div>
+      <p className="footer-copyright">
+        {new Date().getFullYear()}&copy;Sabona All Right Resived </p>
+ 
+    </div>
+  )
+}
+
+export default Footer
+
+//
+
+.header{
+    height: 34vw;
+    margin: 30px auto;
+    background: url('header_img.png') no-repeat;
+    background-size: contain;
+    position: relative;
+    }
+    .header-contents{
+        position: absolute;
+        align-items: start;
+        display: flex;
+        gap: 1.5vw
+        ;
+        max-width: 50%;
+        bottom: 10%;
+        left: 6vw;
+        animation: fadeIn 3s;
+    }
+    .header-contents h2{
+        font-weight: 500;
+        color: white;
+        margin-bottom: 20px;
+        font-size: 50px;
+        font-size: max(4.5vw, 22px);
+    }
+    .header-contents p{
+        color: white;
+        font-size: 1.3vw;
+    }
+    .navbar-right input{
+        margin-right: 0px;
+        width: 200px;
+        height: 40px;
+        text-align: center;
+      border-radius: 20px;
+      font-weight: 400;
+      font-size: 18px;
+        border: 1px solid rgb(136, 13, 198);
+    
+    }
+    .header-contents pre{
+    font-size: 23px;
+    color: rgb(238, 7, 169);
+    font-weight: 500;
+    display: table-column;
+    }
+    .header-contents button {
+        font-size: 18px;
+        padding: 4px;
+        border-radius: 20px;
+        background-color: white;
+        color: rgb(225, 7, 236);
+        border: none;
+        display: flex;
+      align-items: end;
+    
+    }
+    @media(max-width:1050px){
+     
+        .header-contents{
+            max-width: 45%;
+        }
+        .header-contents p{
+            color: white;
+            font-size: 1.3vw;
+        }
+        .navbar-right input{
+            margin-right: 0px;
+            width: 100px;
+            height: 20px;
+            text-align: center;
+          border-radius: 10px;
+          font-weight: 20;
+          font-size: 12px;
+            border: 1px solid rgb(136, 13, 198);
+    }
+    }
+    @media(max-width:750px){
+       
+        .header-contents h2{
+            font-size: 20px;
+            max-width: 65%;
+            display: flex;
+            flex-direction: column;
+        }
+        .header-contents pre{
+           font-size: 12px;
+           font-weight: 300;
+        }
+    .header-contents p{
+        display: none;
+       font-size: 12px;
+    }
+    .header-contents button{
+        font-size: 12px;
+        flex-direction: column;
+    }
+    }
+    #
+import React, { useState } from 'react'
+import './Header.css'
+const Header = () => {
+  const foods=["budeen","daboo","cacaabsa","cunboo"]
+  const[list,setList]=useState("");
+  function listOfFood(){
+    document.querySelector('pre').innerHTML=foods;
+    setList(list)
+  }
+  return (
+    <div className='header'>
+      <div className="header-contents">
+        <h2>Order your favourite food </h2>
+        <p>food is fuel of human being</p>
+        <button onClick={listOfFood}> view Menu</button>
+        <pre></pre>
+      </div>
+    </div>
+
+
+  )
+}
+
+export default Header
+//
+
+
+.login-pop-up{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    display: grid;
+}
+.login-pop-up-contener{
+    place-self: center;
+    flex-direction: column;width: max(23vw,330px);
+    display: flex;
+    color: rgb(255, 255, 255);
+    background-color: #02c0fae0;
+    gap: 25px;
+    padding: 25px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    animation: fadIn 0.5s;
+
+}
+.login-pop-up-title{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    align-items: center;
+}
+.login-pop-up-title img{
+    width: 16px;
+    cursor: pointer;
+}
+.login-pop-up-inputs{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+.login-pop-up-inputs input{
+    outline: none;
+    border: 1px solid rgb(211, 14, 225);
+    border-radius: 5px ;
+    gap: 20px;
+    padding: 10px;
+}
+.login-pop-up-contener button{
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: tomato;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+.login-pop-up-condition{
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    margin-top: -15px;
+}
+.login-pop-up-condition input{
+    margin-left: 5px;
+}
+.login-pop-up p span{
+    cursor: pointer;
+    color: tomato;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 5px;
+    cursor: pointer;
+}
+#
+
+import React, { useContext, useState } from "react";
+import "./LoginPopUp.css";
+import { assets } from "../../assets/assets";
+import { StoreContext } from "../../context/StoreContext";
+import axios from "axios";
+
+const LoginPopUp = ({ setShowlogin }) => {
+ 
+  const { url,setToken} = useContext(StoreContext);
+  const [currState, setCurrState] = useState("Login");
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const onChangeHandeler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setData(data => ({ ...data, [name]: value }));
+  };
+//   useEffect(()=>{
+// console.log(data)
+//   },[data])
+
+  const onlogin = async (event) => {
+    event.preventDefault();
+    let newUrl = url;
+    if (currState === "login") {
+      newUrl += "/api/user/login";
+    } else {
+      newUrl += "/api/user/register";
+    }
+    const response = await axios.post(newUrl, data);
+    if (response.data.success) {
+      setToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
+      setShowlogin(false);
+    } else {
+      alert(response.data.message);
+    }
+  };
+
+  return (
+    <div className="login-pop-up">
+      <form onSubmit={onlogin} className="login-pop-up-contener">
+        <div className="login-pop-up-title">
+          <h1>{currState}</h1>
+          <img
+            onClick={() => setShowlogin(false)}
+            src={assets.cross_icon}
+            alt=""
+          />
+        </div>
+        <div className="login-pop-up-inputs">
+          {currState === "Login" ? 
+            <></>
+           : 
+            <input
+              name="name"
+              onChange={onChangeHandeler}
+              value={data.name}
+              type="text"
+              placeholder="Your Name"
+         
+            />
+          }
+
+          <input
+            name="email"
+            onChange={onChangeHandeler}
+            value={data.email}
+            type="email"
+            placeholder="email"
+            required
+          />
+          <input
+            name="password"
+            onChange={onChangeHandeler}
+            value={data.password}
+            type="password"
+            placeholder="password"
+            required
+          />
+        </div>
+        <button type="submit">
+          {currState === "Sign Up" ? "login" : "Create Account"}
+        </button>
+        <div className="login-pop-up-condition">
+          <input type="checkbox" required />
+          <p>Continuing agree our privacy </p>
+        </div>
+        {currState === "login" ? (
+          <p>
+            create new account ?
+            <span onClick={() => setCurrState("sign up")}>click here</span>
+          </p>
+        ) : (
+          <p>
+            already have an account?
+            <span onClick={() => setCurrState("login")}>login here</span>
+          </p>
+        )}
+      </form>
+    </div>
+  );
+};
+
+export default LoginPopUp;
+
+.navbar{
+    padding: 20px 0px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .logo {
+    width: 150px;
+}
+.navbar-menu{
+    display: flex;
+    gap: 20px ;
+    list-style: none;
+    font-size: 18px;
+    color: rgb(2, 94, 255);
+   
+}
+.navbar-right{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    
+}
+.navbar button{
+    background-color: transparent;
+    font-size: 16px;
+    color: rgb(36, 35, 35);
+    border: 1px solid tomato;
+    border-radius: 50px;
+    cursor:pointer; 
+   transition: 0.3s;
+    padding: 10px 30px;
+}
+.navbar button:hover{
+    background-color: rgb(253, 123, 2);
+    cursor: pointer;
+}
+.navbar .active{
+    padding-bottom: 2px;
+    border-bottom: 2px solid rgb(226, 10, 208);
+}
+.navbar li{
+    cursor: pointer;
+}
+.navbar-search-icon{
+   
+    position: relative;
+}
+.navbar-search-icon .dot{
+    position: absolute;
+   
+    min-width: 10px;
+    min-height: 10px;
+    background-color: rgb(255, 3, 112);
+border-radius: 5px;
+top: -8px;
+right: -8px;
+
+}
+.navbar-profile{
+    position: relative;
+}
+.navbar-profile-dropdown{
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+}
+.navbar-profile:hover .navbar-profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: aliceblue;
+    padding: 12px 25px;
+    border-radius: 4px;
+    border: 1px solid;
+    outline: 2px solid white;
+    list-style: none;
+}
+.navbar-profile-dropdown li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.navbar-profile img{
+    width: 30px;
+}
+.navbar-profile-dropdown img{
+    width: 20px;
+}
+.navbar-profile-dropdown p{
+    color: rgb(254, 8, 148);
+}
+.navbar-profile-dropdown li:hover{
+   color: tomato;
+}
+@media(max-width:1050px){
+   .navbar.logo {
+width: 140px;
+    }
+    .navbar-menu{
+        gap: 20px;
+        font-size: 17px;
+    }
+   .navbar-right{
+    gap: 30px;
+   }
+   .navbar-right img{
+width: 22px;
+   }
+  .navbar-right button{
+    padding: 8px 25px;
+  }
+}
+@media(max-width:900px){
+    .navbar.logo {
+ width: 140px;
+     }
+     .navbar-menu{
+         gap: 15px;
+         font-size: 16px;
+     }
+    .navbar-right{
+     gap: 20px;
+    }
+    .navbar-right img{
+ width: 15px;
+    }
+   .navbar-right button{
+     padding: 7px 20px;
+     font-size: 15px;
+   }
+ }
+ @media(max-width:750px){
+     .navbar-menu{
+       display: none;
+     }
+    
+ }
+#
+import React, { useContext, useState } from "react";
+import { assets } from "../../assets/assets";
+import "./Navbar.css";
+import { Link, useNavigate } from "react-router-dom";
+import Cart from "../../pages/Cart/Cart";
+import { StoreContext } from "../../context/StoreContext";
+
+const Navbar = ({ setShowlogin }) => {
+  const [menu, setMenu] = useState("home");
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/");
+  };
+  return (
+    <div className="navbar">
+      <Link to="/">
+        {" "}
+        <img src={assets.logo} alt="" className="logo" />
+      </Link>
+      <ul className="navbar-menu">
+        <Link
+          to="/"
+          className={menu === "home" ? "active" : ""}
+          onClick={() => setMenu("home")}
+        >
+          home
+        </Link>
+        <a
+          href="#explore-menu"
+          className={menu === "menu" ? "active" : ""}
+          onClick={() => setMenu("menu")}
+        >
+          menu
+        </a>
+        <a
+          href="#app-download"
+          className={menu === "mobile-app" ? "active" : ""}
+          onClick={() => setMenu("mobile-app")}
+        >
+          mobile-app
+        </a>
+        <a
+          href="#contact"
+          className={menu === "contact-us" ? "active" : ""}
+          onClick={() => setMenu("contact-us")}
+        >
+          contact-us
+        </a>
+      </ul>
+      <div className="navbar-right">
+        <img src={assets.search_icon} alt="" />
+
+        <div className="navbar-search-icon">
+          <Link to="/cart">
+            <img src={assets.basket_icon} alt="" />
+          </Link>
+          <div className={getTotalCartAmount() === 0 ? "" : "dot"}> </div>
+        </div>
+        {!token ? (
+          <button onClick={() => setShowlogin(true)}>sign in</button>
+        ) : (
+          <div className="navbar-profile">
+            <img src={assets.profile_icon} alt="" />
+            <ul className="navbar-profile-dropdown">
+              <li onClick={() => navigate("/myorders")}>
+                <img src={assets.bag_icon} alt="" />
+                <p>Order</p>
+              </li>
+              <hr />
+              <li onClick={logout}>
+                <img src={assets.logout_icon} alt="" />
+                <p>Logout</p>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+export default Navbar;
+
+
+///
+
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
+// import { food_list } from "../assets/assets";
+export const StoreContext=createContext(null)
+const StoreContextProvider=(props)=>{
+const[cartItem,setCartItem]=useState({})
+
+const url="http://localhost:4000"
+const[token,setToken]=useState("")
+const[food_list,setFoodList]=useState([])
+const addToCart=async(itemId)=>{
+    if(!cartItem[itemId]){
+        setCartItem((prev)=>({...prev,[itemId]:1}))
+    }
+    else{
+        setCartItem((prev)=>({...prev,[itemId]:prev[itemId]+1}))  
+    }
+    if (token) {
+        await axios.post(url+"/api/cart/add",{itemId},{headers:{token}})
+    }
+}
+const removeFromcart= async (itemId)=>{
+    setCartItem((prev)=>({...prev,[itemId]:prev[itemId]-1})) 
+    if (token) {
+        await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}})
+    }
+}
+const getTotalCartAmount=()=>{
+    let totalAmount=0;
+    for(const item in cartItem){
+        if(cartItem[item]>0){
+            let itemInfo=food_list.find((product)=>product._id===item);
+            totalAmount +=itemInfo.price*cartItem[item]
+        }
+        }
+        return totalAmount;
+       
+}
+const fechFoodList=async()=>{
+    const response=await axios.get(url+'/api/food/list')
+    setFoodList(response.data.data)
+}
+const loadCartData=async(token)=>{
+    const response=await axios.post(url+'/api/cart/get',{},{headers:{token}})
+    setCartItem(response.data.cartData)
+}
+// useEffect(()=>{
+//     console.log(cartItem)
+// },[cartItem])
+useEffect(()=>{
+    async function loadData(){
+        await fechFoodList()
+        if (localStorage.getItem("token")) {
+            setToken(localStorage.getItem("token"))
+            await loadCartData(localStorage.getItem("token"));
+        }
+    }
+loadData();
+},[])
+
+
+const contextValue={
+    food_list,
+    cartItem,
+    setCartItem,
+    addToCart,
+    removeFromcart,
+    getTotalCartAmount,
+    url,
+    token,
+    setToken
+}
+return<StoreContext.Provider value={contextValue}>
+    {props.children}
+</StoreContext.Provider>
+}
+export default StoreContextProvider
+///
+
+
+
+
+
+.cart{
+    margin-top: 100px;
+}
+.cart-items-title{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    color: gray;
+    font-size: max(1vw,12px);
+    align-items: center;
+}
+.cart-items-item{
+    color: black;
+    margin-top: 10px 0px;
+}
+.cart-items-item img{
+    width: 50px;
+}
+.cart-bottom{
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    gap: max(12vw,20px);
+}
+.cart-total{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cart-total-detail{
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+}
+.cart-total hr{
+    margin: 10px 0px;
+  
+}
+.cart-items-item,.crows{
+cursor: pointer;
+}
+.cart-total hr{
+    margin: 10px 0px;
+}
+.cart-total button{
+    border: none;
+    color: white;
+    background-color: tomato;
+    width: max(15vw,200px);
+    padding: 12px 0px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.cart-promocode{
+    flex: 1;
+}
+.cart-promocode p{
+    color: #555;
+}
+.cart-promo-code-input{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(170, 163, 163);
+    border-radius: 4px;
+
+}
+.cart-promo-code-input input{
+    background: transparent;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+
+}
+.cart-promo-code-input button{
+    width: max(10vw,150px);
+    padding: 12px 5px;
+    background-color: black;
+    border: none;
+    color: white;
+    border-radius: 4px;
+}
+
+@media(max-width:750px){
+    .cart-bottom{
+        flex-direction: column-reverse;
+    }
+    .cart-promocode{
+        justify-content: start;
+    }
+}
+#
+
+import React from 'react'
+import './Cart.css'
+import { useContext } from 'react'
+import { StoreContext } from '../../context/StoreContext'
+import{useNavigate} from 'react-router-dom'
+const Cart = () => {
+  const{cartItem,removeFromcart,food_list,getTotalCartAmount,url}=useContext(StoreContext)
+  const navigate=useNavigate()
+  return (
+    <div className='cart'>
+      <div className="cart-items">
+        <div className="cart-items-title">
+          <p>Title</p>
+          <p>Items</p>
+          <p>Price</p>
+          <p>Quantity</p>
+          <p>Total</p>
+          <p>Remove</p>
+        </div>
+        <br />
+        <hr />
+        {food_list.map((item,index)=>{
+          if(cartItem[item._id]>0){
+            return( <div>
+              <div className="cart-items-title cart-items-item">
+                <img src={url+"/image/"+item.image} alt="" />
+                <p>{item.name}</p>
+                <p>${item.price}</p>
+                <p>{cartItem[item._id]}</p>
+                <p>${item.price*cartItem[item._id]}</p>
+                <p onClick={()=>removeFromcart(item._id)} className='crows'>X</p>
+              </div>
+              <hr />
+              </div>
+            )
+          }
+        })}
+      </div>
+      <div className="cart-bottom">
+        <div className="cart-total">
+          <h2>CART TOTAL</h2>
+          <div>
+          <div className="cart-total-detail">
+          <p>subTotal</p>
+          <p>${getTotalCartAmount()}</p>
+        </div>
+        <hr />
+        <div className="cart-total-detail">
+        <p>delivery free</p>
+          <p>${2}</p>
+          </div>
+          <hr />
+          <div className="cart-total-detail">
+          <b>Total</b>
+          <b>${getTotalCartAmount()+2}</b>
+        </div>
+        </div>
+        <button onClick={()=>navigate("/order")} className='button11'>PROCEED TO CHECKOUT</button>
+        </div>
+        <div className="cart-promocode">
+        <div>
+      <p>if you have promo choip write here</p>
+          <div className='cart-promo-code-input'>
+<input type="text" placeholder='enter your promo code here' />
+<button>sumbit</button>
+        
+       
+
+      </div>
+
+     
+</div>
+          </div>
+        </div>
+      </div>
+   
+  )
+}
+
+export default Cart
+
+
+
+import React, { useState } from 'react'
+import Header from '../../components/Header/Header'
+import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
+import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
+import AppDownload from '../../components/AppDownload/AppDownload'
+
+const Home = () => {
+  const[category,setCategory]=useState('All')
+  return (
+    <div className='home'>
+      <Header/>
+      <ExploreMenu category={category} setCategory={setCategory}/>
+     <FoodDisplay category={category}/>
+     <AppDownload/>
+    </div>
+  )
+}
+
+export default Home
+
+//
+
+.Myorder{
+    margin: 50px 0px ;
+}
+.Myorder .order-continers{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+.myorders-order{
+    display: grid;
+    grid-template-columns:0.5fr 2fr 1fr 1fr 2fr 1fr ;
+    align-items: center;
+    gap: 30px;
+    font-size: 14px;
+    padding: 10px 20px;
+    color: beige;
+    border: 1px solid purple;
+}
+.myorders-order{
+    width: 50px;
+}
+
+
+import React, { useContext, useEffect, useState } from 'react'
+ import './Myorder.css'
+import { StoreContext } from '../../context/StoreContext'
+import axios from 'axios'
+import { assets } from '../../assets/assets'
+const Myorder = () => {
+    const {url,token}=useContext(StoreContext)
+    const [data,setData]=useState([])
+    const fechorder=async()=>{
+    const response=await axios.post(url+"/api/order/userorders",{},{headers:{token}})
+    setData(response.data.data)
+
+    }
+    useEffect(()=>{
+if (token) {
+    fechorder()
+}
+    },[token])
+  return (
+    <div className='Myorder'>
+   <h1>My orders</h1>
+   <div className="order-continers">
+    {data.map((order,index)=>{
+return(
+    <div key={index} className='myorders-order'>
+<img src={assets.parcel_icon} alt="" />
+<p>{order.items.map((item,index)=>{
+    if (index===order.items.length-1) {
+        return item.name +"X"+item.quantity;
+    }
+    else{
+        return item.name +"X"+item.quantity+", "
+    }
+})}</p>
+
+<p>{order.amount}.00</p>
+<p> items:{order.items.length}</p>
+<p>{order.status}</p>
+<button onClick={fechorder}>Track Order</button>
+    </div>
+)
+    }
+    )}
+   </div>
+    </div>
+  )
+}
+
+export default Myorder
+//
+
+.place-order{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 50px;
+
+}
+.place-order-left{
+    width: 100%;
+    max-width: max(30% 500px);
+}
+.place-order-left .title{
+margin-bottom: 50px;
+font-size: 30px;
+font-weight: 600;
+}
+.place-order-left input{
+    margin-bottom: 15px;
+    border: 1px solid rgb(231, 228, 222);
+    padding: 10px;
+    width: 100%;
+    outline-color: tomato;
+    border-radius: 4px;
+}
+.place-order-left .multi-fields{
+    display: flex;
+    gap: 10px;
+}
+.place-order-right{
+    width: 100%;
+    max-width: max(40% 500px);
+}
+.cart-total-detail b{
+    align-items: end;
+}
+ .cart-total-detail.display-price{
+margin-right: 50px;
+}
+.least-button{
+    background-color: tomato;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-weight: 600;
+    animation: 2s;
+
+}
+.least-button:hover{
+    background-color: rgb(230, 190, 190);
+}
+
+
+import React, { useEffect, useState } from 'react'
+import './PlaceOrder.css'
+import { useContext } from 'react'
+import { StoreContext } from '../../context/StoreContext'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+
+const PlaceOrder = () => {
+  const {getTotalCartAmount,token,food_list,url,cartItem}=useContext(StoreContext);
+  const[data,setData]=useState({
+    firstName:"",
+    lastName:"",
+    email:"",
+    street:"",
+    city:"",
+    state:"",
+    zipCode:"",
+    country:"",
+    phone:""
+  })
+  const onChangeHandelr=(event)=>{
+    const name=event.target.name
+    const value=event.target.value
+    setData(data=>({...data,[name]:value}))
+  }
+  useEffect(()=>{
+    console.log(data)
+  },[data])
+  const placeholder=async(event)=>{
+event.preventDefault()
+let orderItems=[]
+food_list.map((item)=>{
+  if (cartItem[item._id]>0) {
+    let itemInfo=item;
+    itemInfo["quantity"]=cartItem[item._id]
+    orderItems.push(itemInfo)
+  }
+})
+console.log(orderItems)
+  let orderData={
+    address:data,
+    items:orderItems,
+    amount:getTotalCartAmount()+2
+  }
+  let response=await axios.post("/api/order/place",orderData,{headers:{token}});
+  if (response.data.success) {
+  const {session_url}=response.data;
+  window.location.replace(session_url)
+  }
+  else{
+    alert("error")
+  }
+  }
+  const navigate=useNavigate()
+  useEffect(()=>{
+    if (!token) {
+      navigate("/cart")
+    }
+    else if(getTotalCartAmount()===0){
+navigate("/cart")
+    }
+  })
+  return (
+    <form onSubmit={placeholder} className='place-order'>
+      <div className="place-order-left">
+       
+<p className="title">Delivery information</p>
+<div className="multi-fields">
+  <input required name='firstName' onChange={onChangeHandelr} value={data.firstName} type="text" placeholder='First Name'/>
+  <input  required name='lastName' onChange={onChangeHandelr} value={data.lastName} type="text" placeholder='Last Name' />
+</div>
+<input  required name='email' onChange={onChangeHandelr} value={data.email} type="email" placeholder='Your Email'/>
+  <input  required name='street' onChange={onChangeHandelr} value={data.street} type="text" placeholder='Street' />
+  <div className="multi-fields">
+  <input  required name='city' onChange={onChangeHandelr} value={data.city} type="text" placeholder='City'/>
+  <input  required name='state' onChange={onChangeHandelr} value={data.state} type="text" placeholder='State' />
+</div>
+<div className="multi-fields">
+  <input  required name='zipCode' onChange={onChangeHandelr} value={data.zipCode} type="text" placeholder='Zip code'/>
+  <input  required name='country' onChange={onChangeHandelr} value={data.country} type="text" placeholder='country' />
+
+</div>
+<input  required name='phone' onChange={onChangeHandelr} value={data.phone} type="tel" placeholder='phone' />
+<button type='submit' className='least-button'>PROCEED TO PAYMENT</button>
+      </div>
+      <div className="place-order-right">
+        <h2>Cart Total</h2>
+        <div className="cart-total-detail">
+        <p>subTotal</p>
+          <p>${getTotalCartAmount()}</p>
+        </div>
+        <hr />
+        <div className="cart-total-detail">
+        </div>
+        <p>delivery free{`$.${getTotalCartAmount()===0?0:2}`}</p>
+        <hr />
+        <b>Total:</b>
+          <b className='end-display'>{getTotalCartAmount()===0?0:getTotalCartAmount()+2}</b>
+      </div>
+      <div className="cart-total-modif">
+  
+
+        </div>
+        
+    </form>
+  )
+}
+
+export default PlaceOrder
+
+//
+
+.verify{
+    min-height: 60vh;
+    display: grid;
+}
+.verify.spinner{
+    width: 100%;
+    height: 100%;
+    border: 5px solid rgb(231, 216, 221);
+    place-self: center;
+    border-radius: 50%;
+    border-top-color: chocolate;
+    animation: rotate 1s infinite;
+}
+@keyframes rotate{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+#
+import React, { useContext, useEffect } from 'react'
+import './Verify.css'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { StoreContext } from '../../context/StoreContext'
+import axios from 'axios'
+const Verify = () => {
+    const[searchParams,setSearchParams]=useSearchParams()
+    const success=searchParams.get("success")
+    const orderId=searchParams.get("orderId")
+    const {url}=useContext(StoreContext)
+    const navigate=useNavigate()
+    const verifiyPayment=async()=>{
+        const response=await axios.post("/api/order/verify",{success,orderId})
+        if (response.data.success) {
+            navigate("/mypayment")
+        } else {
+            navigate("/")
+        }
+        useEffect(()=>{
+verifiyPayment()
+        },[])
+    }
+
+
+
+    
+  return (
+    <div className='verify'>
+     <div className="spinner">
+
+     </div>
+    </div>
+  )
+}
+
+export default Verify
+//
+
+import React, { useState } from 'react'
+import Navbar from './components/Navbar/Navbar'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home/Home'
+import Cart from './pages/Cart/Cart'
+
+import Footer from './components/Footer/Footer'
+import LoginPopUp from './components/LoginPopUp/LoginPopUp'
+
+import Verify from './pages/Verify/Verify'
+import Myorder from './pages/Myorder/Myorder'
+import Contact from './components/Contact/Contact'
+import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
+const App = () => {
+  const[showlogin,setShowlogin]=useState(false)
+  return (
+
+    <div>
+      {showlogin?<LoginPopUp setShowlogin={setShowlogin}/>:<></>}
+    <div className='app'>
+      <Navbar setShowlogin={setShowlogin}/>
+      <Routes>
+        <Route path='/'element={<Home/>}/>
+        <Route path='/cart'element={<Cart/>}/>
+        <Route path='/order'element={<PlaceOrder/>}/>
+        <Route path='/verify' element={<Verify/>}/>
+        <Route path='/myorders' element={<Myorder/>}/>
+      </Routes>
+    </div>
+    <Contact/>
+    <Footer/>
+    </div>
+  )
+}
+
+export default App
+
+
+
+/////
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: outfit;
+  scroll-behavior: smooth;
+}
+body{
+  min-height: 100vh;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+.app{
+  width: 80%;
+  margin: auto;
+}
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+/////
+
+
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+import StoreContextProvider from './context/StoreContext.jsx'
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+  <StoreContextProvider>
+  <App/>
+  </StoreContextProvider>
+
+  </BrowserRouter>
+ 
+)
+
+/////
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>food-del</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+
+backend###########
+
+
+db-connected
+
+import mongoose from "mongoose";
+
+ export const connectedDB=async()=>{
+    await mongoose.connect('mongodb+srv://Sabona:0928629040@cluster0.yxoayzp.mongodb.net/food-2del').then(()=>console.log("DBconnected"))
+ }
+
+
+
+CONTROLLER
+
+
+cart-controller
+
+
+import userModel from '../models/userModel.js'
+const addToCart=async(req,res)=>{
+try {
+    let userData=await userModel.findById(req.body.userId)
+    let cartData=await userData.cartData;
+    if (!cartData[req.body.itemId]) {
+        cartData[req.body.itemId]=1;
+    }
+    else{
+        cartData[req.body.itemId]+=1;
+    }
+    await userModel.findByIdAndUpdate(req.body.userId,{cartData})
+    res.json({success:true,message:"added to cart !"})
+} catch (error) {
+    console.log(error)
+    res.json({success:false,message:"not added to cart !"})
+}
+
+
+}
+
+
+const removeFromCart=async(req,res)=>{
+try {
+    let userData =await userModel.findById(req.body.userId)
+    let cartData=await userData.cartData;
+    if (cartData[req.body.itemId]>0) {
+        cartData[req.body.itemId]-=1;
+    }
+    await userModel.findByIdAndUpdate(req.body.userId,{cartData})
+    res.json({success:true,message:"removed from cart !"})
+} catch (error) {
+    console.log(error)
+    res.json({success:false,message:"not removed from cart !"})
+}
+
+
+}
+const getCart=async(req,res)=>{
+    try {
+        let userData =await userModel.findById(req.body.userId)
+        let cartData=await userData.cartData;
+        res.json({success:true,cartData})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"coud't get cartData !"})
+    }
+
+}
+export {addToCart,removeFromCart,getCart}
+
+food-cont
+import foodModel from "../models/foodModel.js";
+import fs from 'fs'
+const addFood=async(req,res)=>{
+    let image_filename=`${req.file.filename}`;
+    const food= new foodModel({
+        name:req.body.name,
+        description:req.body.description,
+        price:req.body.price,
+        category:req.body.category,
+        image:image_filename
+
+    })
+    try {
+        await food.save();
+        res.json({success:true,message:"food added"})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"error"})
+
+    }
+
+}
+const listFood= async (req,res)=>{
+    try {
+        const foods=await foodModel.find({})
+        res.json({success:true,data:foods})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"error"})
+    }
+
+}
+const removeFood=async (req,res)=>{
+try {
+    const food=await foodModel.findById(req.body.id)
+    fs.unlink(`uploads/${food.image}`,()=>{})
+    await foodModel.findByIdAndDelete(req.body.id)
+    res.json({success:true,message:"food is removed"})
+} catch (error) {
+    console.log(error)
+    res.json({success:false,message:"Error"})
+}
+}
+export {addFood,listFood,removeFood}
+
+
+
+order-cont
+
+
+
+
+
+
+import orderModel from "../models/orderModel.js";
+import userModel from '../models/userModel.js'
+import Stripe from 'stripe'
+const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
+const placeOrder=async(req,res)=>{
+    const frontendUrl="http://localhost:5173"
+    try {
+        const newOrder= new orderModel({
+            userId:req.body.userId,
+            items:req.body.items,
+            amout:req.body.amout,
+            adress:req.body.adress
+        })
+        await newOrder.save();
+        await userModel.findByIdAndUpdate(req.body.userId,{cartData},{})
+        const line_items= req.body.items.map((item)=>({
+price_data:{
+    currency:"inr",
+    product_data:{
+        name:item.name
+    },
+    unit_amount:item.price*100*80
+},
+
+quantity:item.quantity
+        }))
+        line_items.push({
+           price_data:{
+            currency:"inr",
+            product_data:{
+                name:"Delivery changes"
+            },
+            unit_amount:2*100*80
+           } ,
+           quantity:1
+        })
+        const session=await stripe.checkout.sessions.create({
+            line_items:line_items,
+            mode:"payment",
+            success_url:`${frontendUrl}/verify?success:true&orderId= ${newOrder._id}`,
+            cancel_url:`${frontendUrl}/verify?success:false&orderId= ${newOrder._id}`
+        })
+        res.json({success:true,session_url:session_url})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"error"})
+    }
+}
+const orderVerify=async(req,res)=>{
+const{orderId,success}=req.body;
+try {
+    if (success==="true") {
+        await orderModel.findByIdAndUpdate(orderId,{payment:true});
+        res.json({success:true,message:"you are paid"})
+    }
+    else{
+        await orderModel.findByIdAndDelete(orderId)
+        res.json({success:false,message:"you are not paid"})
+    }
+} catch (error) {
+    console.log(error)
+    res.json({success:false,message:"Error"})
+}
+}
+//user order for frontend
+
+
+const userOrder = async (req,res)=>{
+try {
+    const orders=await orderModel.find({userId:req.body.userId});
+    res.json({success:true,data:orders})
+} catch (error) {
+    console.log(error)
+    res.json({success:false,message:"Error"})
+}
+}
+const listorder=async(req,res)=>{
+    try {
+        const orders=await orderModel.find({});
+        res.json({success:true,data:orders})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"Error"})
+    }
+}
+const updateOrders=async(req,res)=>{
+    try {
+        await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
+        res.json({success:true,message:"status is updated"})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"status is not updated"})
+    }
+
+}
+export {placeOrder,orderVerify,userOrder,listorder,updateOrders}
+
+
+
+user-contreoller
+
+import userModel from "../models/userModel.js";
+import jwt from "jsonwebtoken"
+import bcrypt from 'bcrypt'
+import validator from "validator";
+//login user
+const loginUser=async (req,res)=>{
+    const{password,email}=req.body;
+    try {
+        const user=await userModel.findOne({email})
+        if (!user) {
+            return res.json({success:false,message:"User is created"})
+            }
+            const isMatch=await bcrypt.compare(password,user.password)
+            if (!isMatch) {
+                return res.json({success:false,message:"invalid password"})  
+            }
+            const token=createToken(user._id)
+            res.json({success:true,token:"user created"})
+
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"Error"})
+    }
+}
+const createToken=(id)=>{
+    return jwt.sign({id},process.env.JWT_SECRET)
+}
+//register user
+const registerUser=async(req,res)=>{
+    const{name,password,email}=req.body;
+    try {
+       // checking if user there
+        const exist=await userModel.findOne({email})
+        if (exist) {
+        return res.json({success:false,message:"User already Exist"})
+        }
+        if (!validator.isEmail(email)) {
+            return res.json({success:false,message:"please Enter valid Email"})
+        }
+        if (password.length<8) {
+            return res.json({success:false,message:"please Enter Strong password"})
+        }
+       // hashing user password
+        const salt =await bcrypt.genSalt(10)
+        const hashPassword=await bcrypt.hash(password,salt)
+        const newUser=new userModel({
+            name:name,
+            email:email,
+            password:hashPassword
+        })
+       const user= await newUser.save();
+       const token=createToken(user._id)
+       res.json({success:true,token})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"Error"})
+    }
+
+}
+export {loginUser,registerUser}
+
+
+MIDDLEWARE
+
+auth
+
+import jwt from 'jsonwebtoken'
+const authMiddleware=async(req,res,next)=>{
+const {token}=req.headers;
+if (!token) {
+  return res.json({success:false,message:"invalid"}) 
+ 
+}
+try {
+    const token_decode=jwt.verify(token,process.env.JWT_SECRET)
+    req.body.userId=token_decode.id;
+    next();
+  } catch (error) {
+    console.log(error)
+    res.json({success:false,message:"error"})
+    
+  }
+}
+export default  authMiddleware;
+
+
+MODEL
+
+foodmodel
+
+import mongoose from "mongoose";
+const foodSchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true, // Make sure description is required here
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+    },
+  });
+const foodModel=mongoose.models.food|| mongoose.model("food",foodSchema)
+export default foodModel;
+
+ordermodle
+
+
+
+
+import mongoose from 'mongoose'
+const orderSchema=new mongoose.Schema({
+   userId:{type:String,required:true} ,
+   items:{type:Array,required:true}, 
+   amount:{type:Number,required:true} ,
+   address:{type:Object,required:true} ,
+   status:{type:String,default:"food proccessing"} ,
+   date:{type:Date,default:Date.now()} ,
+   payment:{type:Boolean,default:false}
+})
+const orderModel=mongoose.models.order|| mongoose.model("order",orderSchema)
+export default orderModel
+
+usermodle
+
+
+
+import mongoose from "mongoose"
+const userSchema=new mongoose.Schema({
+name:{type:String,required:true},
+email:{type:String,required:true,unique:true},
+password:{type:String,required:true},
+cartData:{type:Object,default:{}}
+},{minimize:false})
+const userModel=mongoose.models.user||mongoose.model("user",userSchema)
+export default userModel
+
+ROUTE
+
+cartRoute
+
+import express from 'express'
+import { addToCart,removeFromCart,getCart } from '../controllers/cartController.js'
+import authMiddleware from '../middleware/auth.js'
+const cartRouter=express.Router()
+cartRouter.post("/add",authMiddleware,addToCart)
+cartRouter.post("/remove",authMiddleware,removeFromCart)
+cartRouter.post("/get",authMiddleware,getCart)
+export default cartRouter
+
+
+foodRoute
+
+
+
+import express from 'express'
+import  authMiddleware from '../middleware/auth.js'
+import { listorder, orderVerify, placeOrder, updateOrders, userOrder } from '../controllers/orderController.js'
+const orderRouter=express.Router();
+orderRouter.post("/place",authMiddleware,placeOrder);
+orderRouter.post("/verify",orderVerify)
+orderRouter.post("/userorders",authMiddleware,userOrder)
+orderRouter.get("/list",listorder)
+orderRouter.post("/status",updateOrders)
+export default orderRouter;
+
+orderRoute
+
+
+import express from 'express'
+import  authMiddleware from '../middleware/auth.js'
+import { listorder, orderVerify, placeOrder, updateOrders, userOrder } from '../controllers/orderController.js'
+const orderRouter=express.Router();
+orderRouter.post("/place",authMiddleware,placeOrder);
+orderRouter.post("/verify",orderVerify)
+orderRouter.post("/userorders",authMiddleware,userOrder)
+orderRouter.get("/list",listorder)
+orderRouter.post("/status",updateOrders)
+export default orderRouter;
+
+userRoute
+
+
+import express from 'express'
+import { loginUser,registerUser } from '../controllers/userController.js'
+const userRouter=express.Router();
+userRouter.post("/register",registerUser)
+userRouter.post("/login",loginUser)
+export default userRouter
+
+uploads-empty-file
+
+.env
+
+# base='mongodb+srv://Sabona:0928629040@cluster0.yxoayzp.mongodb.net/food-2del'
+JWT_SECRET="random#secret";
+STRIPE_SECRET_KEY="pk_test_51PF1rsSGHPcRl1Pc92MsjVss5CZ7IGqiqbxcgF6akHoEE6EJJgoeTnqLpJwkVPvhfpIVnn1T29Or0ctBudD20CTt00572zbei6"
+
+
+[server]
+
+
+import express from 'express';
+import cors from 'cors';
+import { connectedDB } from './config/db.js';
+import foodRoutes from './routes/foodRoutes.js'; 
+import userRouter from './routes/userRoute.js';
+import 'dotenv/config.js'
+import cartRouter from './routes/cartRoute.js';
+import orderRouter from './routes/orderRoute.js';
+// Assuming foodRoutes is defined in a separate file
+
+
+const app = express();
+const port = 4000;
+
+app.use(express.json()); // Parse incoming JSON data
+app.use(cors());          // Enable CORS (if needed)
+
+connectedDB(); // Connect to the database (assuming it's implemented in db.js)
+
+// Mount the food routes at the '/api/food' path
+app.use('/api/food', foodRoutes);
+app.use("/image",express.static('uploads'))
+app.use("/api/user",userRouter)
+app.use("/api/cart",cartRouter)
+app.use("/api/order",orderRouter)
+
+
+app.get("/", (req, res) => {
+  res.send("Ok API is working");
+});
+
+app.listen(port, () => {
+  console.log(`Server is Started on http://localhost:${port}`);
+});
+
+
+
+
+not prove-code
+
+
+AI-GENERATED
+
+const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt'); // For password hashing
+const cors = require('cors'); // To handle CORS (if needed)
+
+const app = express();
+const port = 4000 // Use environment variable for port
+
+// Database connection
+const uri = "mongodb+srv://Sabona:0928629040@cluster0.yxoayzp.mongodb.net/food-2del"; // Replace with your connection string
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error(err));
+
+// Define user schema
+const userSchema = new mongoose.Schema({
+  name: { type: String },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+});
+
+// Hash password before saving user
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Allow CORS requests (if needed for frontend)
+app.use(cors());
+
+// Parse incoming JSON data
+app.use(express.json());
+
+// API endpoint for login
+app.post('/api/user/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ success: false, message: 'Invalid email or password' });
+    }
+
+    const validPassword = await bcrypt.compare(password, user.password);
+    if (!validPassword) {
+      return res.status(401).json({ success: false, message: 'Invalid email or password' });
+    }
+
+    // Generate a token here (e.g., using JWT library)
+    const token = 'your_jwt_token'; // Replace with actual token generation logic
+
+    res.json({ success: true, token });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+// API endpoint for registration (similar logic with password hashing)
+app.post('/api/user/register', async (req, res) => {
+  // ... Implement registration logic with user data validation and saving to database
+});
+
+app.listen(port, () => console.log(`Server listening on port ${port}`));
+
+
+ADMIN
+
+assets
+
+
+import logo from './logo.png'
+import add_icon from './add_icon.png'
+import order_icon from './order_icon.png'
+import profile_image from './profile_image.png'
+import upload_area from './upload_area.png'
+import parcel_icon from './parcel_icon.png'
+
+export const assets ={
+    logo,
+    add_icon,
+    order_icon,
+    profile_image,
+    upload_area,
+    parcel_icon
+}
+
+export const url = 'http://localhost:4000'
+
+//
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 8px 4px;
+    justify-content: space-between;
+}
+.navbar .logo{
+    width: max(10%,80px);
+}
+.navbar.profile{
+    width: 40px;
+}
+
+import React from "react";
+import "./Navbar.css";
+import {assets} from '../../assets/assets'
+const Navbar = () => {
+  return <div className="navbar">
+    <img className="logo" src={assets.logo} alt="" />
+    <img className="profile" src={assets.profile_image} alt="" />
+  </div>;
+};
+
+export default Navbar;
+//
+.sidebar{
+    width: 18%;
+    min-height: 100vh;
+    border: 1.5px solid rgb(164, 158, 158);
+    border-top: 0px;
+    font-size: max(1vw,10px);
+}
+.sidebar-options{
+    display: flex;
+    padding-left: 20%;
+    padding-top: 50px;
+    gap: 20px;
+    flex-direction: column;
+}
+.sidebar-option{
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(227, 12, 235);
+    border-radius: 3px 0px 0px 3px;
+    padding: 8px 10px;
+    gap: 12px;
+    border-right: 0px;
+    cursor: pointer;
+
+}
+.sidebar-option.active{
+    background-color: rgb(32, 100, 100);
+    border: 1px solid tomato;
+    color: rgb(128, 2, 0);
+}
+@media(max-width:900px){
+    .sidebar-option p{
+        display: none;
+    }
+}
+#
+
+import React from "react";
+import "./Sidebar.css";
+import { assets } from "../../assets/assets";
+import { NavLink } from "react-router-dom";
+const Sidebar = () => {
+  return (
+    <div className="sidebar">
+      <div className="sidebar-options">
+        <NavLink to="/add" className="sidebar-option">
+          <img src={assets.add_icon} alt="" />
+          <p>Add Items</p>
+        </NavLink>
+        <NavLink to="/list" className="sidebar-option">
+          <img src={assets.order_icon} alt="" />
+          <p>List Items</p>
+        </NavLink>
+        <NavLink to="/orders" className="sidebar-option">
+          <img src={assets.order_icon} alt="" />
+          <p>Orders</p>
+        </NavLink>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;
+//
+
+.add{
+    width: 70%;
+    margin-left: max(5vw,25px);
+    margin-top: 50px;
+    color: gray;
+    font-size: 17px;
+
+}
+.add form{
+    gap: 20px;
+}
+.add-img-upload{
+    width: 120px;
+}
+.add-product-name ,.add-description-name{
+    width: max(40%,280px);
+}
+.add-product-name input ,.add-description-name textarea{
+    padding: 10px;
+}
+.add-category-price{
+    display: flex;
+    gap: 30px;
+}
+.add-category-price input,.add-category-price select{
+    width: 120px;
+    padding: 10px;
+}
+.add-btn{
+    max-width: 120px;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border: 1px solid tomato;
+}
+.add-btn:hover{
+    max-width: 120px;
+    border-radius: 8px;
+    background-color: rgb(53, 41, 41);
+    color: rgb(233, 7, 199);
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid tomato;
+    align-items: center;
+}
+#
+
+import React, { useState } from 'react';
+import './Add.css';
+import { assets } from '../../assets/assets';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+const Add = ({url}) => {
+  // const url = 'http://localhost:4000';
+  const [image, setImage] = useState(false);
+  const [data, setData] = useState({
+    name: '',
+    description: '',
+    price: '',
+    category: 'salad',
+  });
+
+  const onChangeHandeler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setData((data) => ({ ...data, [name]: value }));
+  };
+
+  const onSubmitHandeler = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('description', data.description);
+    formData.append('price', Number(data.price));
+    formData.append('category', data.category);
+    formData.append('image', image);
+
+    try {
+      const response = await axios.post(`${url}/api/food/add`, formData);
+      if (response.data.success) {
+        setData({
+          name: '',
+          description: '',
+          price: '',
+          category: 'salad',
+        });
+        setImage(false);
+        toast.success(response.data.message);
+      } else {
+        // Handle errors from the server
+        toast.error(response.data.message || 'An error occurred'); // Display generic error if no message provided
+      }
+    } catch (error) {
+      console.error('Error submitting data:', error);
+      toast.error('An error occurred while submitting data'); // Display generic error message
+    }
+  };
+
+
+  return (
+    <div className='add'>
+        <form className='flex-col' onSubmit={onSubmitHandeler}>
+            <div className="add-img-upload flex-col">
+                <p>Upload Image</p>
+                <label htmlFor="image">
+                    <img src={image?URL.createObjectURL(image):assets.upload_area} alt="" />
+                </label>
+                <input onChange={(e)=>setImage(e.target.files[0])} type="file" hidden required id='image' />
+            </div>
+            <div className="add-product-name flex-col">
+                <p>Product Name</p>
+                <input onChange={onChangeHandeler} value={data.name} type="text" name='name' placeholder='Type Here'/>
+
+            </div>
+            <div className="add-description-name flex-col">
+                <p>Product description</p>
+                <textarea onChange={onChangeHandeler} value={data.description} name='description' rows="6" placeholder='Write Discrption here'></textarea>
+            </div>
+            <div className="add-category-price">
+                <div className="add-category flex-col">
+                    <p>Production Category</p>
+                    <select onChange={onChangeHandeler}  name="category" >
+                        <option value="salad">salad</option>
+                        <option value="Rolls">Rolls</option>
+                        <option value="Deserts">Deserts</option>
+                        <option value="Sandiwich">Sandiwich</option>
+                        <option value="Cake">Cake</option>
+                        <option value="Pure veg">Pure veg</option>
+                        <option value="Pasta">Pasta</option>
+                        <option value="Noodles">Noodles</option>
+                    </select>
+                </div>
+                <div className="add-price flex-col">
+                <p>Add Price</p>
+                <input onChange={onChangeHandeler} value={data.price} type="Number" name='price' placeholder='$20'/>
+
+            </div>
+            </div>
+            <button type='submit' className='add-btn'>ADD</button>
+        </form>
+    </div>
+  )
+}
+
+export default Add
+//
+.list-table-format{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+    align-items: center;
+    border: 1px solid #acacac;
+    gap: 10px;
+    font-size: 13px;
+}
+.list-table-format .title{
+    background-color: #f9f9f9;
+}
+.list-table-format img{
+    width: 50px;
+}
+.cursor{
+    cursor: pointer;
+}
+@media(max-width:600){
+    .list-table-format{
+        
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+    .list-table-format.title{
+        display: none;
+    }
+}
+
+
+#
+
+import React, { useEffect, useState } from 'react'
+import './List.css'
+import axios from 'axios'
+import { toast } from 'react-toastify';
+const List = ({url}) => {
+  // const url="http://localhost:4000";
+  const[list,setList]=useState([])
+  const fechList=async()=>{
+const response=await axios.get(`${url}/api/food/list`)
+
+
+if (response.data.success) {
+  setList(response.data.data)
+}
+else{
+  toast.error('something wrong')
+}
+  }
+  const removedFood =async(foodId)=>{
+const response=await axios.post(`${url}/api/food/remove`,{id:foodId})
+
+await fechList();
+if (response.data.success) {
+  toast.success(response.data.message)
+}
+else{
+  toast.error('somthing wrong')
+}
+  }
+  useEffect(()=>{
+    fechList();
+  },[])
+  return (
+    <div className='list add flex-col'>
+      <p>All List of Product</p>
+      <div className="list-tabel">
+        <div className="list-table-format title">
+          <b>Image</b>
+          <b>Name</b>
+          <b>category</b>
+          <b>price</b>
+          <b>Action</b>
+
+        </div>
+{list.map((item,index)=>{
+  return(
+    <div key={index} className='list-table-format'>
+      <img src={`${url}/image/`+ item.image} alt="" />
+      <p>{item.name}</p>
+      <p>{item.category}</p>
+      <p>${item.price}</p>
+      <p onClick={()=>removedFood(item._id)} className='cursor'>X</p>
+
+    </div>
+  )
+})}
+      </div>
+     
+    </div>
+  )
+}
+
+export default List
+//
+.orders{
+    margin: 50px 0px ;
+}
+.order-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+.order-item{
+    display: grid;
+    grid-template-columns:0.5fr 2fr 1fr 1fr 2fr 1fr ;
+    align-items: center;
+    gap: 30px;
+    font-size: 14px;
+    padding: 10px 20px;
+    color: beige;
+    border: 1px solid purple;
+}
+.order-item-food{
+    width: 50px;
+}
+
+import React from 'react'
+import './Order.css'
+import { useState } from 'react'
+import {toast} from 'react-toastify'
+import { useEffect } from 'react'
+import axios from 'axios'
+import {assets} from '../../assets/assets'
+const Order = ({url}) => {
+  const[orders,setOrders]=useState([])
+  const fechAll=async()=>{
+    const response=await axios.get(url+"/api/order/list")
+    if (response.data.success) {
+      setOrders(response.data.data)
+      console.log(response.data.data)
+    }
+    else{
+toast.error("something wrong")
+    }
+  }
+  const statusHandeler=async(event,orderId)=>{
+const response=await axios.post(url+"/api/order/status",{
+  orderId,
+  status:event.target.value,
+})
+if (response.data.success) {
+  await fechAll()
+}
+  }
+  useEffect(()=>{
+    fechAll()
+  },[])
+  return (
+    <div className='orders'>
+   <h3>order page</h3>
+   <div className="order-list">
+    {orders.map((order,index)=>{
+      <dir key={index} className ="order-item">
+<img src={assets.parcel_icon} alt="" />
+<div>
+  <p className='order-item-food'>
+    {order.items.map((item,index)=>{
+if (index===order.items.length-1) {
+  return item.name+" X"+item.quantity
+} else {
+  return item.name+" X"+item.quantity +", "
+}
+    })}
+  </p>
+  <p className='name-user'>{order.address.firtName+" "+order.address.lastName}</p>
+  <div className='for-check'>
+<select onChange={(event)=>statusHandeler(event,order._id)} value={order.status}>
+  <option value="fo">fo</option>
+  <option value="fo1">fo1</option>
+  <option value="fo2">fo2</option>
+</select>
+  </div>
+</div>
+      </dir>
+    })}
+   </div>
+    </div>
+  )
+}
+
+export default Order
+
+////
+
+
+import React from 'react'
+import Navbar from './components/Navbar/Navbar'
+import Sidebar from './components/Sidebar/Sidebar'
+import { Route, Routes } from 'react-router-dom'
+import Add from './pages/Add/Add'
+import List from './pages/List/List'
+import Order from './pages/Order/Order'
+import { ToastContainer} from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+
+const App = () => {
+  const url="http://localhost:4000";
+  return (
+    <div>
+      <ToastContainer/>
+      <Navbar/>
+      <hr />
+      <div className="app-component">
+        <Sidebar/>
+<Routes>
+  <Route path='/add' element={<Add url={url}/>}/>
+  <Route path='/list' element={<List url={url}/>}/>
+  <Route path='/orders' element={<Order url={url}/>}/>
+</Routes>
+      </div>
+      
+    </div>
+  )
+}
+
+export default App
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    font-weight: outfit;
+}
+body{
+    min-height: 100vh;
+    background-color: #fcfcfc;
+}
+a{
+    color: inherit;
+    outline: none;
+}
+hr{
+    border: none;
+    height: 1px;
+    background-color: #a9a9a9;
+}
+.app-component{
+    display: flex;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.cursor{
+    cursor: pointer;
+}
+
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

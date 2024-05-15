@@ -1,0 +1,2184 @@
+E-Commers
+
+server side code
+
+
+
+const port=4000
+const express=require('express')
+const app=express();
+const mongoose=require('mongoose')
+const jwt=require('jsonwebtoken')
+const multer=require('multer')
+const path=require('path');
+const cors=require('cors');
+
+app.use(express.json())
+app.use(cors());
+
+mongoose.connect('mongodb+srv://SabonaDev:sabo246Bal@cluster0.5vky3nd.mongodb.net/E-commer')
+//API creation
+
+app.get('/',(req,res)=>{
+  res.send('express app is running')
+})
+// uploading images
+const storage = multer.diskStorage({
+  destination: './uploads/images', // Corrected path with plural 's'
+  filename: (req, file, cb) => {
+    return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+  }
+});
+const upload = multer({ storage: storage });
+
+app.use('/images', express.static('uploads/images')); // Assuming folder exists
+
+app.post("/upload", upload.single('product'), (req, res) => {
+  res.json({
+    success: 1,
+    image_url: `http://localhost:${port}/images/${req.file.filename}`
+  });
+});
+//creating schema
+const Product=mongoose.model('Product',{
+  id:{
+    type:Number,
+    required:true,
+  } ,
+  name:{
+    type:String,
+    required:true,
+  },
+  image:{
+    type:String,
+    required:true,
+  },
+  category:{
+    type:String,
+    required:true,
+  },
+  new_price:{
+    type:Number,
+    required:true,
+  } ,
+  old_price:{
+    type:Number,
+    required:true,
+  } ,
+  Date:{
+    type:Date,
+    default:Date.now,
+  } ,
+  avilabel:{
+    type:Boolean,
+    default:true,
+  } ,
+})
+app.post('/addproduct',async(req,res)=>{
+  let products=await Product.find({});
+  let id;
+  if(products.length>0){
+    let last_product_array=products.slice(-1)
+    let last_product=last_product_array[0]
+    id=last_product.id+1;
+  }
+  else{
+    id=1;
+  }
+    const product=new Product({
+        id:id,
+        name:req.body.name,
+        image:req.body.image,
+        category:req.body.category,
+        new_price:req.body.new_price,
+        old_price:req.body.old_price,
+    });
+    console.log(product);
+    await product.save();
+    console.log('saved');
+    res.json({
+        success:true,
+        name:req.body.name,
+    })
+})
+//Creating API for deleting
+app.post('/removeproduct',async(req,res)=>{
+  await Product.findOneAndDelete({id:req.body.id})
+  console.log("Removed");
+  res.json({
+    success:true,
+    name:req.body.name
+  })
+})
+//creating API for All product
+app.get('/allproducts',async(req,res)=>{
+  let products=await Product.find({});
+  // console.log("all product is feched");
+  res.send(products)
+})
+const Users=mongoose.model('Users',{
+  name:{
+    type:String,
+  },
+  email:{
+    type:String,
+    unique:true,
+  },
+  password:{
+    type:String,
+  },
+  cartData:{
+    type:Object,
+  },
+  date:{
+    type:Date,
+    default:Date.now,
+  }
+})
+//Registery API
+app.post('/singup',async(req,res)=>{
+  let check=await Users.findOne({email:req.body.email})
+  if (check) {
+    return res.status(400).json({success:false,errors:"exsiting user found"})
+  }
+  let cart={}
+  for (let i = 0; i < 300; i++) {
+ cart[i]=0;
+  
+  }
+  const user =new Users({
+name:req.body.username,
+email:req.body.email,
+password:req.body.password,
+cartData:cart,
+  })
+  await user.save();
+  const data={
+    user:{
+      id:user.id
+    }
+  }
+  const token=jwt.sign(data,'secret_ecom');
+  res.json({success:true,token})
+})
+//API for loogin 
+app.post('/login',async(req,res)=>{
+  let user=await user.findOne({email:req.body.email});
+  if (user) {
+    const passComper=req.body.password===user.password;
+    if (passComper) {
+      const data={
+        user:{
+          id:user.id
+        }
+      }
+      const token=jwt.sign(data,'secret_ecom')
+      res.json({success:true,token});
+    }
+    else{
+      res.json({success:false,errors:"Wrong password"})
+    }
+  }
+else{
+  res.json({success:false,errors:"Wrong email id"})
+}
+})
+//API for new collectin
+app.get('/newcollection',async(req,res)=>{
+  let products=await Product.find({});
+  let newcollection=products.slice(1).slice(-8)
+  // console.log('newcollection is feched')
+  res.send(newcollection);
+})
+
+//popular in women
+app.get('/popularinwomen',async(req,res)=>{
+  let products=await Product.find({category:'women'});
+  let popular_in_women=products.slice(0,4)
+  // console.log('product in women is feched')
+  res.send(popular_in_women);
+
+})
+// //midel ware
+
+app.listen(port,(error)=>{
+  if (!error) {
+      console.log('it is running'+ port)
+  }
+  else{
+      console.log('not running'+ error)
+  }
+})
+
+
+
+
+shopContext code 
+
+
+
+
+
+import React, { createContext, useEffect, useState } from "react";
+export const ShopContext=createContext(null)
+const getDefultCart=()=>{
+    let cart={}
+    for (let index = 0; index <300+1; index++) {
+        cart[index]=0;
+    }
+    return cart;
+        }
+const ShopContextProvider=(props)=>{
+    const[all_product,setAll_product]=useState([]);
+    const[cartItems,setCartItems]=useState(getDefultCart())
+    useEffect(()=>{
+        fetch('http://localhost:4000/allproducts').
+        then((response)=>response.json()).
+        then((data)=>setAll_product(data))
+        if (localStorage.getItem('auth-token')) {
+           fetch('http://localhost:4000/getcart',{
+           method:'POST',
+           headers:{
+               Accept:"application/form-data",
+               "auth-token":`${localStorage.getItem('auth-token')}`,
+               'Content-Type':'application/json',
+           },
+           body:"",
+       }).then((response)=>response.json())
+       .then((data)=>setCartItems(data));
+        }
+    },[])
+   const addToCart=(itemId)=>{
+setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
+// console.log(cartItems)
+if (localStorage.getItem('auth-token')) {
+    fetch('http://localhost:4000/addtocart',{
+        method:'POST',
+        headers:{
+            Accept:"application/form-data",
+            "auth-token":`${localStorage.getItem('auth-token')}`,
+            'Content-Type':'application/json',
+        },
+        body:JSON.stringify({'itemId':itemId}),
+    }).then((response)=>response.json()).then((data)=>console.log(data))
+}
+   }
+   const removeFromCart=(itemId)=>{
+    setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
+    if (localStorage.getItem('auth-token')){
+        fetch('http://localhost:4000/removefromcart',{
+            method:'POST',
+            headers:{
+                Accept:"application/form-data",
+                "auth-token":`${localStorage.getItem('auth-token')}`,
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify({'itemId':itemId}),
+        }).then((response)=>response.json()).then((data)=>console.log(data))
+    }
+       }
+       const getTotalCartItem=()=>{
+        let totalAmount=0;
+       for(const item in cartItems){
+        if (cartItems[item]>0) {
+            let itemOf=all_product.find((product)=>product.id===Number(item) )
+            totalAmount += itemOf.new_price * cartItems[item]
+        }
+        return totalAmount;
+       }
+       
+       }
+       const getTotalCartAmont=()=>{
+        let totalItems=0;
+        for(const item in cartItems){
+            if(cartItems[item]>0){
+                totalItems+=cartItems[item]
+            }
+        }
+        return totalItems;
+       }
+       const contextValue={getTotalCartAmont,getTotalCartItem,all_product,cartItems,addToCart,removeFromCart}
+    return(<ShopContext.Provider value={contextValue}>
+{props.children}
+    </ShopContext.Provider>
+
+    )
+}
+export default ShopContextProvider
+
+
+pages
+
+cart code
+
+import React from 'react'
+import './CSS/Cart.css'
+import CartItems from '../components/CartItems/CartItems'
+const Cart = () => {
+  return (
+    <div className='cart'>
+      <CartItems/>
+    </div>
+  )
+}
+
+export default Cart
+
+
+login code
+
+import React, { useState } from 'react'
+import './CSS/LoginSingup.css'
+const LoginSingup = () => {
+  const[state,setState]=useState('login')
+  const[formData,setFormdata]=useState({
+    usename:"",
+    password:"",
+    email:""
+  })
+  const changeHandiler=(e)=>{
+    setFormdata({...formData,[e.target.name]:e.target.value})
+  }
+  const login=async()=>{
+console.log("login excuted",formData)
+let responseData;
+    await fetch('http://localhost:4000/singup',{
+      method:'POST',
+      headers:{
+        Accept:"application/form-data",
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(formData)
+    }).then((response)=>response.json()).then((data)=>responseData=data)
+    if (responseData.success) {
+      localStorage.setItem('auth-token',responseData.token);
+      window.location.replace('/');
+    }
+    else{
+      alert(responseData.errors)
+    }
+  }
+  const singup=async()=>{
+    console.log("singup excuted",formData)
+    let responseData;
+    await fetch('http://localhost:4000/singup',{
+      method:'POST',
+      headers:{
+        Accept:"application/form-data",
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(formData)
+    }).then((response)=>response.json()).then((data)=>responseData=data)
+    if (responseData.success) {
+      localStorage.setItem('auth-token',responseData.token);
+      window.location.replace('/');
+    }
+    else{
+      alert(responseData.errors)
+    }
+  }
+  return (
+    <div className='loginsignup'>
+      <div className="loginsignup-contener">
+        <h1>{state}</h1>
+        <div className="loginsignup-filed">
+         {state==='sign Up'?<input name='usename' type="text" placeholder='Your name' value={formData.usename} onChange={changeHandiler}/>:<></>} 
+          <input name='email'value={formData.email} onChange={changeHandiler} type="email" placeholder='Your email' />
+          <input name='password' value={formData.password} onChange={changeHandiler} type="password" placeholder='Your password' />
+        </div>
+        <button onClick={()=>{state==='login'?login():singup()}}>continue</button>
+        {state==="sign Up"? <p className="loginsignup-login">Already Have an account<span onClick={()=>{setState('login')}}>login here </span></p>:
+        <p className="loginsignup-login">Create an account<span onClick={()=>{setState('sign Up')}}>click here </span></p>}
+        <div className="loginsignup-agree">
+          <input type="checkbox" name='' id='' className='check' />
+          <p>continue to agree to our privacy</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default LoginSingup
+
+
+product code 
+
+import React, { useContext } from 'react'
+import './CSS/Product.css'
+import { ShopContext } from '../context/ShopContext'
+import { useParams } from 'react-router-dom'
+import Breadcrums from '../components/Breadcrums/Breadcrums'
+import ProductDisplay from '../components/ProductDisplay/ProductDisplay'
+import DescriptionBox from '../components/DescriptionBox/DescriptionBox'
+import RelatedProducts from '../components/RelatedProducts/RelatedProducts'
+import CartItems from '../components/CartItems/CartItems'
+const Product = () => {
+  const {all_product}=useContext(ShopContext)
+  const {productId}=useParams();
+  const product=all_product.find((e)=>e.id===Number(productId))
+  return (
+    <div className='product'>
+      <Breadcrums product={product}/>
+      <ProductDisplay product={product} />
+      <DescriptionBox/>
+      {/* <RelatedProducts/> */}
+      <CartItems/>
+    
+    </div>
+  )
+}
+
+export default Product
+
+
+shop page
+
+import React from 'react'
+
+import Hero from '../components/Hero/Hero'
+import Popular from '../components/Popular/Popular'
+import Offers from '../components/Offers/Offers'
+import NewCollection from '../components/NewCollection/NewCollection'
+import NewsLetters from '../components/NewsLetters/NewsLetters'
+
+const Shop = () => {
+  return (
+    <div className='shop'>
+      <Hero/>
+      <Popular/>
+      <Offers/>
+      <NewCollection/>
+      <NewsLetters/>
+     
+    </div>
+  )
+}
+
+export default Shop
+
+shop category
+
+import React, { useContext } from 'react'
+import './CSS/ShopCategory.css'
+import { ShopContext } from '../context/ShopContext'
+import sort from '../components/assets/dropdown_icon.png'
+import Item from '../components/Item/Item'
+const ShopCategory = (props) => {
+  const {all_product}=useContext(ShopContext)
+  return (
+    <div className='shop-category'>
+      <img className='shopecategory-banner' src={props.banner} alt="" />
+      <div className="shopcategory-indexsort">
+<p><span>showing 1-12</span> out of 36  </p>
+<div className="shopcategory-sort">
+  sorted by <img src={sort} alt="" />
+</div>
+      </div>
+      <div className="shopecategory-products">
+        {all_product.map((item,i)=>{
+          if (props.category===item.category) {
+            return(<Item  key={i} id={item.id} name={item.name} image={item.image} old_price={item.old_price} new_price={item.new_price}/>)
+          }
+          else{
+            return null
+          }
+        })}
+      </div>
+      <div className="load-more">
+        Explore More
+      </div>
+    </div>
+  )
+}
+
+export default ShopCategory
+
+
+breadcream
+
+
+
+import React from 'react'
+import './Breadcrums.css'
+import breadcrum_icon from '../assets/breadcrum_arrow.png'
+const Breadcrums = (props) => {
+    const {product}=props
+  return (
+    <div className='breadcrums'>
+      HOME <img src={breadcrum_icon} alt="" />SHOP  <img src={breadcrum_icon} alt="" />{product.category}<img src={breadcrum_icon} alt="" />{product.name}
+    </div>
+  )
+}
+
+export default Breadcrums
+//{product.category} btwen img
+
+
+css
+
+.breadcrums{
+    display: flex;
+    gap: 7px;
+    align-items: center;
+  justify-content: center;
+  margin: 60px 170px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-transform: capitalize;
+
+}
+
+cartitems
+
+import React, { useContext } from 'react'
+import './CartItems.css'
+import { ShopContext } from '../../context/ShopContext'
+import remove from '../assets/cart_cross_icon.png'
+const CartItems = () => {
+    const{getTotalCartItem,all_product,cartItems,removeFromCart}=useContext(ShopContext)
+  return (
+    <div className='CartItems'>
+    <div className="caritems-formt-main">
+        <p>Product</p>
+        <p>Titel</p>
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Total</p>
+        <p>Remove</p>
+        
+    </div>
+    <hr />
+    {all_product.map((e)=>{
+        if (cartItems[e.id]>0) {
+            return  <div>
+            <div className="cartitem-formt caritems-formt-main">
+                <img src={e.image} alt="" className='cartIcon' />
+                <p>{e.name}</p>
+                <p>${e.new_price}</p>
+                <button className='cartButton'>{cartItems[e.id]}</button>
+                <p>{e.new_price*cartItems[e.id]}</p>
+                <img className='cartIcon-remove-img' src={remove} alt=""onClick={()=>{removeFromCart(e.id)}} />
+            </div>
+            <hr />
+          </div>
+
+        }
+        return null
+    })}
+    <div className="cartItem-down">
+      <div className="cartItem-total">
+        <h1>Cart Totals</h1>
+        <div>
+          <div className="cart-item-total-items">
+            <p>Subtotal</p>
+            <p>${getTotalCartItem()}</p>
+          </div>
+          <hr />
+          <div className="cart-item-total-items">
+            <p>Shipping fee</p>
+            <p>free</p>
+          </div>
+          <hr />
+          <div className="cart-item-total-items">
+            <h3>Total</h3>
+            <h3>${getTotalCartItem()}</h3>
+         
+          </div>
+        </div>
+        <button>PROCEED TO CHECK OUT</button>
+      </div>
+      <div className="promo-code">
+        <p>if you have promo code enter here</p>
+        <div className="card-promo-code">
+     <input type="text"placeholder='enter your promo code ' />
+     <button>sumbit</button>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  )
+}
+
+export default CartItems
+
+
+css
+
+.CartItems{
+   width: 1000px;
+    margin: 100px 170px;
+  
+}
+.CartItems hr{
+height: 3px;
+
+color: rgb(27, 26, 25);
+}
+.caritems-formt-main{
+    display: flex;
+    /* display: grid; */
+    /* grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr; */
+    align-items: center;
+    font-size: 18px;
+    gap: 70px;
+    font-weight: bold;
+    color: rgb(60, 58, 58);
+    padding: 20px 0px;
+    margin: auto;
+}
+.cartitem-formt{
+    font-size: 17px;
+    font-weight: 700;
+}
+.cartIcon{
+    height: 62px;
+}
+.cartIcon-remove-img{
+    margin: 0px 40px;
+    cursor: pointer;
+    width: 15px;
+}
+.cartButton{
+    width: 65px;
+    height: 50px;
+    border: 1px solid purple;
+    background: white;
+    color: rgb(4, 249, 4);
+}
+.cartItem-down{
+    display: flex;
+    margin: 100px 0px;
+}
+.cartItem-total{
+    gap: 40px;
+    margin-left: 200px;
+    flex:1;
+    flex-direction: column;
+    display: flex;
+}
+.cart-item-total-items{
+    padding: 15px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.cartItem-total button{
+    width: 256px;
+    height: 60px;
+    outline: none;
+    border: none;
+    font-size: 23px;
+    font-weight: 500;
+    background-color: tomato;
+    color: white;
+    cursor: pointer;
+    border:1px solid salmon;
+}
+.promo-code{
+    flex:1;
+    font-size: 16px;
+    font-weight: 600;
+}
+.promo-code p{
+    color: rgb(65, 63, 63);
+}
+.card-promo-code{
+    width: 504px;
+    height: 58px;
+    margin-left: 20px;
+    margin-top: 15px;
+    background-color: rgb(212, 206, 206);
+
+}
+.card-promo-code input{
+    width: 287px;
+    height: 50px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.card-promo-code button{
+    width: 170px;
+    background: rgb(8, 8, 8);
+    color: white;
+    border: none;
+    height: 50px;
+    cursor: pointer;
+}
+description box
+
+import React from 'react'
+import './DescriptionBox.css'
+const DescriptionBox = () => {
+  return (
+    <div className='description'>
+      <div className="contain">
+      <div className='box-de'>Description</div>
+      <div className='box-de fade'>Reviwes</div>
+      </div>
+      <div className="defintion">
+<p>Ecommerce websites offer a number of advantages over traditional brick-and-mortar stores, including:
+
+Convenience: You can shop from the comfort of your own home, 24 hours a day, 7 days a week.
+Selection: E-commerce websites typically have a wider selection of products than brick-and-mortar stores.
+Prices: You can often find better prices on e-commerce websites than in brick-and-mortar stores.
+Comparisons: It's easy to compare prices and products from different retailers on e-commerce websites.
+If you're thinking about starting an e-commerce business, there are a number of things you'll need to consider, such as:
+
+What products or services will you sell?
+Who is your target market?
+How will you market your e-commerce website?
+What e-commerce platform will you use?
+How will you process payments?
+How will you ship products to your customers?</p>
+      </div>
+    </div>
+  )
+}
+
+export default DescriptionBox
+ css
+
+.description{
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.contain{
+    margin: auto;
+display: flex;
+gap: 20px;
+font-size: 20px;
+font-weight: 600;
+padding: 10px;
+width: 150px;
+}
+.box-de{
+    margin: auto;
+    padding: 0px 20px ;
+    display: flex;
+    gap: 20px;
+    border: 1px solid rgb(228, 23, 197); 
+    border-radius: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.box-de .fade{
+    margin: auto;
+    padding: 0px 20px ;
+    display: flex;
+    gap: 20px;
+    border: 1px solid rgb(251, 13, 231);  
+    border-radius: 10px; 
+    margin-bottom: 20px;
+    color: rgb(101, 101, 96);
+    cursor: pointer;
+}
+.defintion{
+    margin: auto;
+    width: 800px;
+    border: 1px solid rgb(251, 13, 231);  
+    font-size: 20px;
+   
+    padding: 0px 40px;
+}
+ 
+footer
+
+import React from 'react'
+import './Footer.css'
+import logo_footer from '../assets/logo.png'
+import instagram from '../assets/instagram_icon.png'
+import penters from '../assets/pintester_icon.png'
+import what_sap from '../assets/whatsapp_icon.png'
+const Footer = () => {
+  return (
+    <div className='footer'>
+      <div className="footer-logo">
+<img src={logo_footer} alt="" />
+<p>Shopper</p>
+      </div>
+      <ul className='footer-link'>
+        <li>Company</li>
+        <li>Product</li>
+        <li>Offers</li>
+        <li>About Us</li>
+        <li>Contact Us</li>
+      </ul>
+      <div className="social-icon">
+        <div className="footer-icon-contener">
+            <img src={instagram} alt="" />
+        </div>
+        <div className="footer-icon-contener">
+            <img src={penters} alt="" />
+        </div>
+        <div className="footer-icon-contener">
+            <img src={what_sap} alt="" />
+        </div>
+      </div>
+      <div className="footer-copyright">
+        <hr />
+        <p>&copy; {new Date().getFullYear()} All Right Received By Sabona Marara </p>
+      </div>
+    </div>
+  )
+}
+
+export default Footer
+
+css
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-direction: column;
+}
+.footer-logo{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+.footer-logo p{
+    font-size: 46px;
+    font-weight: 600;
+    color: rgb(246, 62, 1);
+}
+.footer-link{
+    display: flex;
+    gap: 50px;
+    color: blueviolet;
+    list-style: none;
+    font-size: 20px;
+}
+.footer-link li{
+    cursor: pointer;
+}
+.social-icon{
+    display: flex;
+    gap: 20px;
+}
+.footer-icon-contener{
+    padding: 10px;
+    padding-bottom: 6px;
+    color: white;
+    border: 1px solid rgb(170, 119, 168);
+    cursor: pointer;
+}
+.footer-copyright{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+  margin-bottom: 30px;
+  font-size: 23px;
+  color: rgb(57, 56, 56);
+}
+.footer-copyright hr{
+    width: 80%;
+    height: 3px;
+    color: rgb(201, 160, 239);
+}
+
+hero
+
+import React from 'react'
+import './Hero.css'
+import hand_icon from '../assets/hand_icon.png'
+import arrow from '../assets/arrow.png'
+import hero from '../assets/sabo.jpg'
+const Hero = () => {
+  return (
+    <div className='hero'>
+        <div className="hero-left">
+<h2>New arrivals </h2>
+<div>
+    <div className="hand-icon">
+        <p>New</p>
+        <img src={hand_icon} alt="" />
+        </div>
+        <p>collection </p>
+        <p>for every one</p>
+        </div>
+        <div className="latest-btn">
+            <div>latest collection</div>
+            <img src={arrow} alt="" />
+        </div>
+        </div>
+     <div className="hero-right">
+<img src={hero} alt="" />
+     </div>
+    </div>
+  )
+}
+
+export default Hero
+
+css
+
+.hero{
+    margin-top: 50px;
+    height: 100vh;
+    background: linear-gradient(180deg, white, rgb(109, 106, 106 60%) );
+    display: flex;
+}
+.hero-left{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   padding-left: 180px;
+    justify-content: center;
+    line-height: 1.1;
+
+}
+.hero-left h2{
+    font-size: 26px;
+    font-weight: 600;
+    color: rgb(32, 31, 31);
+}
+.hero-left p{
+    font-size: 100px;
+    font-weight: 700;
+    color: rgb(32, 31, 31); 
+}
+.hand-icon{
+    display: flex;
+    align-items: baseline;
+    gap: 30px;
+}
+.hand-icon img{
+    width: 105px;
+    justify-content: center;
+}
+.latest-btn{
+    display: flex;
+    width: 301px;
+    height: 70px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 17px;
+    text-align: center;
+}
+.hero-right img{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+item
+
+import React from 'react'
+import './Item.css'
+import { Link } from 'react-router-dom'
+const Item = (props) => {
+  return (
+    <div className='item'>
+     <Link to={`/product/${props.id}`}><img onClick={window.scrollTo(0,0)} src={props.image} alt="" /></Link> 
+      <p>{props.name}</p>
+      <div className="item-price">
+<div className="item-price-new">
+${props.new_price}
+</div>
+<div className="item-price-old">
+${props.old_price}
+</div>
+      </div>
+    </div>
+  )
+}
+
+export default Item
+
+css
+
+.item{
+    width: 350px;
+}
+.item p{
+    margin: 6px 0;
+}
+.item-price{
+    display: flex;
+    gap: 20px;
+}
+.item-price-new{
+    font-size: 18px;
+    font-weight: 600;
+    
+}
+.item-price-old{
+    font-size: 18px;
+    font-weight: 600;
+  text-decoration: line-through;
+}
+.item:hover{
+    transform: scale(1.05);
+    transition: 1.2s;
+}
+
+navbar
+
+import React, { useContext, useState } from 'react'
+import logo from '../assets/logo.png'
+import car_icon from '../assets/cart_icon.png'
+import './Navbar.css'
+import { Link } from 'react-router-dom'
+import { ShopContext } from '../../context/ShopContext'
+const Navbar = () => {
+    const[menu,setMenu]=useState("shop")
+    const{getTotalCartAmont}=useContext(ShopContext)
+  return (
+    <div className='navbar'>
+      <div className="logo">
+        <img src={logo} alt="" />
+        <p>SHOPPER</p>
+            
+        </div>
+        <ul className="nav-menu">
+            <li onClick={()=>{setMenu("shop")}} className=""><Link style={{textDecoration:'none'}} to='/'>shop</Link>{menu==="shop"?<hr/>:<></>}</li>
+            <li onClick={()=>{setMenu("mens")}} className=""><Link style={{textDecoration:'none'}} to='/mens'>men</Link>{menu==="mens"?<hr/>:<></>}</li>
+            <li onClick={()=>{setMenu("womens")}} className=""><Link style={{textDecoration:'none'}} to='/womens'>women</Link>{menu==="womens"?<hr/>:<></>}</li>
+            <li onClick={()=>{setMenu("kids")}} className=""><Link style={{textDecoration:'none'}} to='/kids'>kids</Link>{menu==="kids"?<hr/>:<></>}</li>
+            </ul>
+            <div className="nav-login-cart">
+              {localStorage.getItem('auth-token')
+                ?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>logout</button>
+                :<Link to='/login'><button>Login</button></Link> }
+              <Link to='/carts'><img src={car_icon} alt="" /></Link> 
+          <div className="nav-counter"><sup>{getTotalCartAmont()}</sup></div>
+        </div>
+     
+    </div>
+  )
+}
+
+export default Navbar
+css
+
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    box-shadow: 0 1px 3px -2px black;
+}
+.logo{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.logo p{
+    font-size: 38px;
+    font-weight: 600;
+}
+.nav-menu{
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    font-weight: 500;
+    list-style: none;
+    cursor: pointer;
+    color: rgb(7, 62, 243);
+    gap: 50px;
+}
+.nav-menu hr{
+    background-color: red;
+    height: 5px;
+    width: 30px;
+    border: none;
+    font-size: 23px;
+  
+   
+
+}
+.nav-login-cart{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    cursor: pointer;
+}
+.nav-login-cart button{
+    border: 1px solid palegoldenrod;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+  
+ 
+    padding: 10px 10px;
+}
+.nav-login-cart button:active{
+    background-color: rgb(142, 185, 210);
+    color: red;
+}
+.nav-counter sup{
+   
+    background-color: red;
+    color: white;
+    margin-left: -35px;
+    margin-top: -35px;
+    display: flex;
+    font-size: 20px;
+    border-radius: 50%;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    justify-content: center;
+}
+
+new cellection
+
+//New colleceltin error code fialed 
+
+
+import React, { useEffect, useState } from 'react'
+import './NewCollection.css'
+// import new_collections from '../assets/new_collections'
+import Item from '../Item/Item'
+
+const NewCollection = () => {
+  const[new_collection,setNewcollection]=useState([]);
+  useEffect(()=>{
+    fetch('http://localhost:4000/newcollection')
+    .then((response)=>response.json())
+    .then((data)=>setNewcollection(data))
+
+  },[])
+  return (
+    <div className='new-collection'>
+      <h1>NEW COLLECTION</h1>
+      <hr />
+      <div className="collection">
+{new_collection.map((item,i)=>{
+     return<Item key={i} id={item.id} name={item.name} image={item.image} old_price={item.old_price} new_price={item.new_price}/>
+})}
+      </div>
+    </div>
+  )
+}
+
+export default NewCollection
+
+css
+
+.new-collection{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  
+    margin-bottom: 350px;
+}
+.collection hr{
+  width: 40px;
+  border: none;
+  color: red;
+    
+}
+.collection{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+.collection img{
+    width: 240px;
+    align-items: center;
+}
+
+
+newsletter
+
+import React from 'react'
+import './NewsLetters.css'
+const NewsLetters = () => {
+  return (
+    <div className='news-letters'>
+      <h1>Get Exclusive Offers in your email</h1>
+      <p>Subscribe to Our NewsLetters to Stay updated</p>
+      <div>
+        <input type="email" placeholder='Your Email' />
+        <button>Subscribe</button>
+      </div>
+    </div>
+  )
+}
+export default NewsLetters
+css
+.news-letters{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 0px 140px;
+    margin-bottom: 150px;
+    background-color: rgb(242, 169, 169);
+    width: 65%;
+    height: 40px;
+    margin-top: 30px;
+
+}
+.news-letters h1{
+    font-size: 40px;
+    color: rgb(9, 246, 238);
+    font-weight: bold;
+    padding: 10px 10px;
+}
+.news-letters p{
+    font-size: 30px;
+    color: rgb(246, 9, 242);
+    font-weight: bold;
+    padding: 10px 10px;
+}
+.news-letters div{
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 750px;
+height: 70px;
+margin: auto;
+border: 1px solid coral;
+border-radius: 80px;
+border: 1px solid rgb(93, 234, 206);
+}
+.news-letters input{
+    width: 500px;
+    border: none;
+    outline: none;
+    color: rgb(85, 83, 83);
+    margin-left: 30px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+.news-letters div button{
+    background-color: rgb(4, 4, 4);
+    color: white;
+    border-radius: 10px;
+    font-size: 35px;
+    text-align: center;
+    padding: 0px 20px;
+    border: none;
+    width: 210px;
+    height: 70px;
+    cursor: pointer;
+}
+.news-letters div button:hover{
+    background-color: rgb(73, 73, 97);
+    cursor: pointer;
+}
+
+offers
+
+import React from 'react'
+import exclu from '../assets/exclusive_image.png'
+import './Offers.css'
+const Offers = () => {
+  return (
+    <div className='offers'>
+    <div className="offers-left">
+<h1>Exclusive</h1>
+<h1>offers for you</h1>
+<p>ONLY BEST PRODUCT</p>
+<button>check now</button>
+    </div>
+    <div className="offers-right">
+  <img src={exclu} alt="" />    
+    </div>
+    </div>
+  )
+}
+
+export default Offers
+
+css
+.offers{
+    width: 65%;
+    height: 60vh;
+    margin: auto;
+    display: flex;
+    padding: 0px 140px ;
+    margin-bottom: 150px;
+    background: rgb(175, 210, 227)
+}
+.offers-left{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+flex-direction: column;
+align-items: center;
+
+}
+.offers-left h1{
+    font-size: 50px;
+    color: rgb(7, 28, 253);
+    margin-bottom: 20px;
+}
+.offers-left p{
+font-size: 40px;
+padding: 0px 20px;
+color: rgb(247, 1, 239);
+}
+.offers-left button{
+background-color: red;
+border: none;
+font-size: 33px;
+border-radius: 8px;
+padding: 0px 20px;
+color: white;
+margin-top: 20px;
+}
+.offers-right img{
+    width: 300px;
+}
+
+//POPULAR ERROR CODE
+
+
+import React, { useState } from 'react'
+import './Popular.css'
+// import data_product from '../assets/data'
+import Item from '../Item/Item'
+import { useEffect } from 'react';
+const Popular = () => {
+  const[popular,setPopular]=useState([]);
+ useEffect(()=>{
+    fetch('http://localhost:4000/popularinwomen')
+    .then((response)=>response.json())
+    .then((data)=>setPopular(data))
+
+  },[])
+  return (
+    <div className='popular'>
+        <h1>POPULAR IN WOMENS</h1>
+      <hr />
+      <div className="women-fashion">
+        {popular.map((item,i)=>{
+            return<Item key={i} id={item.id} name={item.name} image={item.image} old_price={item.old_price} new_price={item.new_price} />
+        })}
+      </div>
+    </div>
+  )
+}
+
+export default Popular
+css
+
+.popular{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 90vh;
+}
+.women-fashion{
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+    
+}
+.women-fashion img{
+    width: 240px;
+}
+
+productdisplay
+
+import React, { useContext } from 'react'
+import './ProductDisplay.css'
+import star1 from '../assets/star_icon.png'
+import star2 from '../assets/star_dull_icon.png'
+import { ShopContext } from '../../context/ShopContext'
+const ProductDisplay = (props) => {
+    const{product}=props
+    const {addToCart}=useContext(ShopContext)
+  return (
+    <div className='product-displsy'>
+      <div className="productDisply-left">
+    <div className="image-list">
+    <img src={product.image} alt="" />
+    <img src={product.image} alt="" />
+    <img src={product.image} alt="" />
+    <img src={product.image} alt="" />
+    </div>
+    <div className="product-dispaly-img">
+    <img className='main-img' src={product.image} alt="" />
+    </div>
+      </div>
+      <div className="productDisply-right">
+        <h1>{product.name}</h1>
+        <div className="description-star">
+            <img src={star1} alt="" />
+            <img src={star1} alt="" />
+            <img src={star1} alt="" />
+            <img src={star1}alt="" />
+            <img src={star2} alt="" />
+            <p>122</p>
+        </div>
+        <div className="product-display-right-prices">
+<div className="product-display-right-prices-old">${product.old_price}</div>
+<div className="product-display-right-prices-new">${product.new_price}</div>
+
+        </div>
+        <div className="product-description">
+          this is our product you can buy by fir price
+        </div>
+        <div className="product-size">
+          <h1>Select size</h1>
+          <div className="product-display-right-size">
+            <div>S</div>
+            <div>M</div>
+            <div>L</div>
+            <div>XL</div>
+            <div>XXl</div>
+          </div>
+
+        </div>
+        <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
+        <p className='product-display-right-category'><span>category</span>Women crop Top</p>
+        <p className='product-display-right-category'><span>tags</span>modern latest Top</p>
+        </div>
+    </div>
+  )
+}
+
+export default ProductDisplay
+import React, { useContext } from 'react'
+import './ProductDisplay.css'
+import star1 from '../assets/star_icon.png'
+import star2 from '../assets/star_dull_icon.png'
+import { ShopContext } from '../../context/ShopContext'
+const ProductDisplay = (props) => {
+    const{product}=props
+    const {addToCart}=useContext(ShopContext)
+  return (
+    <div className='product-displsy'>
+      <div className="productDisply-left">
+    <div className="image-list">
+    <img src={product.image} alt="" />
+    <img src={product.image} alt="" />
+    <img src={product.image} alt="" />
+    <img src={product.image} alt="" />
+    </div>
+    <div className="product-dispaly-img">
+    <img className='main-img' src={product.image} alt="" />
+    </div>
+      </div>
+      <div className="productDisply-right">
+        <h1>{product.name}</h1>
+        <div className="description-star">
+            <img src={star1} alt="" />
+            <img src={star1} alt="" />
+            <img src={star1} alt="" />
+            <img src={star1}alt="" />
+            <img src={star2} alt="" />
+            <p>122</p>
+        </div>
+        <div className="product-display-right-prices">
+<div className="product-display-right-prices-old">${product.old_price}</div>
+<div className="product-display-right-prices-new">${product.new_price}</div>
+
+        </div>
+        <div className="product-description">
+          this is our product you can buy by fir price
+        </div>
+        <div className="product-size">
+          <h1>Select size</h1>
+          <div className="product-display-right-size">
+            <div>S</div>
+            <div>M</div>
+            <div>L</div>
+            <div>XL</div>
+            <div>XXl</div>
+          </div>
+
+        </div>
+        <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
+        <p className='product-display-right-category'><span>category</span>Women crop Top</p>
+        <p className='product-display-right-category'><span>tags</span>modern latest Top</p>
+        </div>
+    </div>
+  )
+}
+
+export default ProductDisplay
+css
+
+.product-displsy{
+    display: flex;
+    margin: 0px 170px;
+
+
+}
+.productDisply-left{
+    display: flex;
+  gap: 17px;}
+  .image-list{
+    display: flex;
+    gap: 17px;
+    flex-direction: column;
+  }
+  .image-list img{  
+    height: 163px;
+  }
+  .product-dispaly-img{
+   width: auto;
+  }
+  .productDisply-right{
+    margin: 0px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .productDisply-right h1{
+    font-size: 40px;
+    font-weight: 600px;
+    color: rgb(246, 10, 210);
+    width: 400px;
+  }
+  .description-star{
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    color: rgb(67, 66, 66);
+    margin: 13px;
+    gap: 5px;
+  }
+  .product-display-right-prices{
+    display: flex;
+    gap: 20px;
+    margin: 40px 0px;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(12, 252, 8);
+  }
+  .product-display-right-prices-old{
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(246, 8, 32);  
+  }
+  .product-display-right-prices-new{
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(8, 12, 246);  
+  }
+  .product-description{
+    font-size: 20px;
+  }
+  .product-display-right-size div{
+    font-size: 20px;
+    color: green;
+    font-weight: 600;
+    border: 1px solid palevioletred;
+    padding: 5px 5px 5px 5px ;
+  }
+  .product-display-right-size{
+    display: flex;
+    gap: 20px
+    ;
+
+  }
+  button{
+    background-color: red;
+    color: white;
+    font-size: 22px;
+    padding: 10px 10px;
+    gap: 10px;
+    border: none;
+    font-weight: 600;
+    width: 200px;
+    border-radius: 20px;
+ margin: 10px;
+
+  }
+  button:hover{
+    background-color: rgb(230, 127, 127);
+    color: white;
+    border: 1px solid purple;
+  }
+  .product-display-right-category{
+    display: flex;
+    font-size: 20px;
+    color: blueviolet;
+    gap: 12px;
+  }
+
+shopcontext
+
+
+
+
+import React, { createContext, useEffect, useState } from "react";
+export const ShopContext=createContext(null)
+const getDefultCart=()=>{
+    let cart={}
+    for (let index = 0; index <300+1; index++) {
+        cart[index]=0;
+    }
+    return cart;
+        }
+const ShopContextProvider=(props)=>{
+    const[all_product,setAll_product]=useState([]);
+    const[cartItems,setCartItems]=useState(getDefultCart())
+    useEffect(()=>{
+        fetch('http://localhost:4000/allproducts').
+        then((response)=>response.json()).
+        then((data)=>setAll_product(data))
+        if (localStorage.getItem('auth-token')) {
+           fetch('http://localhost:4000/getcart',{
+           method:'POST',
+           headers:{
+               Accept:"application/form-data",
+               "auth-token":`${localStorage.getItem('auth-token')}`,
+               'Content-Type':'application/json',
+           },
+           body:"",
+       }).then((response)=>response.json())
+       .then((data)=>setCartItems(data));
+        }
+    },[])
+   const addToCart=(itemId)=>{
+setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
+// console.log(cartItems)
+if (localStorage.getItem('auth-token')) {
+    fetch('http://localhost:4000/addtocart',{
+        method:'POST',
+        headers:{
+            Accept:"application/form-data",
+            "auth-token":`${localStorage.getItem('auth-token')}`,
+            'Content-Type':'application/json',
+        },
+        body:JSON.stringify({'itemId':itemId}),
+    }).then((response)=>response.json()).then((data)=>console.log(data))
+}
+   }
+   const removeFromCart=(itemId)=>{
+    setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
+    if (localStorage.getItem('auth-token')){
+        fetch('http://localhost:4000/removefromcart',{
+            method:'POST',
+            headers:{
+                Accept:"application/form-data",
+                "auth-token":`${localStorage.getItem('auth-token')}`,
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify({'itemId':itemId}),
+        }).then((response)=>response.json()).then((data)=>console.log(data))
+    }
+       }
+       const getTotalCartItem=()=>{
+        let totalAmount=0;
+       for(const item in cartItems){
+        if (cartItems[item]>0) {
+            let itemOf=all_product.find((product)=>product.id===Number(item) )
+            totalAmount += itemOf.new_price * cartItems[item]
+        }
+        return totalAmount;
+       }
+       
+       }
+       const getTotalCartAmont=()=>{
+        let totalItems=0;
+        for(const item in cartItems){
+            if(cartItems[item]>0){
+                totalItems+=cartItems[item]
+            }
+        }
+        return totalItems;
+       }
+       const contextValue={getTotalCartAmont,getTotalCartItem,all_product,cartItems,addToCart,removeFromCart}
+    return(<ShopContext.Provider value={contextValue}>
+{props.children}
+    </ShopContext.Provider>
+
+    )
+}
+export default ShopContextProvider
+
+import './App.css'
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import Product from './pages/Product';
+import Cart from './pages/Cart';
+import LoginSingup from './pages/LoginSingup';
+import ShopCategory from './pages/ShopCategory';
+import Shop from './pages/Shop';
+import Footer from './components/Footer/Footer';
+import men from './components/assets/banner_mens.png'
+import women from './components/assets/banner_women.png'
+import kids from './components/assets/banner_kids.png'
+function App() {
+  return (
+    <div>
+      <BrowserRouter>
+    <Navbar/>
+    <Routes>
+       <Route path="/" element={<Shop category='shop'/>} />
+      <Route path='/mens'element={<ShopCategory banner={men}  category="men"/>}/>
+      <Route path='/womens'element={<ShopCategory banner={women} category="women"/>}/>
+      <Route path='/kids'element={<ShopCategory banner={kids}  category="kid"/>}/>
+      <Route path='/product' element={<Product/>}>
+      <Route path=':productId' element={<Product/>}/>
+      </Route>
+      <Route path='/carts'element={<Cart category='cart'/>}/>
+      <Route path='/login'element={<LoginSingup category='login'/>}/>
+    </Routes>
+    <Footer/>
+    </BrowserRouter>
+    </div>
+  );
+}
+export default App;
+
+
+
+####
+
+
+admin code
+
+import React, { useState } from 'react'
+import './Addproduct.css'
+import upload from '../../assets/upload_area.svg'
+const Addproduct = () => {
+  const[image,setImage]=useState(false)
+  const[proDei,setProDei]=useState({
+    name:"",
+    image:"",
+    category:"women",
+    old_price:"",
+    new_price:""
+  })
+  const imagehandler=(e)=>{
+setImage(e.target.files[0])
+  }
+  const changeHandler=(e)=>{
+    setProDei({...proDei,[e.target.name]:e.target.value})
+  }
+  const add_product=async ()=>{
+console.log(proDei)
+let responseData;
+let product=proDei;
+let formData=new FormData();
+formData.append('product',image);
+await fetch('http://localhost:4000/upload',{
+  method:'POST',
+  headers:{
+    accept:'application/json',
+  },
+  body:formData,
+}).then((resp)=>resp.json()).then((data)=>{responseData=data});
+if (responseData.success) {
+  product.image=responseData.image_url;
+  console.log(product);
+  await fetch('http://localhost:4000/addproduct',{
+    method:'POST',
+    headers:{
+      accept:'application/json',
+      'content-type':'application/json',
+    },
+    body:JSON.stringify(product),
+
+  }).then((resp)=>resp.json()).then((data)=>{
+    data.success?alert('product is Added'):alert("Failed")
+  })
+}
+  }
+  return (
+    <div className='add-product'>
+      <div className="add-product-filed">
+        <p>Product Title</p>
+        <input value={proDei.name}onChange={changeHandler} type="text"name='name'placeholder='type here' />
+      </div>
+      <div className="add-product-price">
+        <div className="add-product-item-filed">
+        <p>Price</p>
+        <input value={proDei.old_price}onChange={changeHandler} type="text"name='old_price'placeholder='type here' />
+        </div>
+        <div className="add-product-item-filed">
+        <p> Offer Price</p>
+        <input value={proDei.new_price}onChange={changeHandler} type="text"name='new_price'placeholder='type here' />
+        </div>
+      </div>
+      <div className="add-product-item-filed">
+        <p>Product Category</p>
+        <select value={proDei.category}onChange={changeHandler} name="category" className='addproduct-selector' >
+          <option value="women">Women</option>
+          <option value="men">Men</option>
+          <option value="kid">Kid</option>
+        </select>
+      </div>
+      <div className="add-product-item-filed">
+        <label htmlFor="file-input">
+        <img src={image?URL.createObjectURL(image):upload} alt=""className='addproduct-thambnil-img' />
+        </label>
+        <input onChange={imagehandler} type="file" name='image'id='file-input' hidden />
+      </div>
+      <button onClick={()=>{add_product()}} className='addbutton-btn'>ADD</button>
+    </div>
+  )
+}
+
+export default Addproduct
+css
+
+.add-product{
+    box-sizing: border-box;
+    margin: 20px 30px;
+    width: 100%;
+    max-width: 800px;
+    padding: 30px 50px;
+    border-radius: 6px;
+    background-color: white;
+}
+.add-product-filed{
+    width: 100%;
+    color: rgb(74, 70, 70);
+    font-size: 18px;
+}
+ input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid rgb(195, 191, 199);
+    padding-left: 15px;
+    outline: none;
+    color: rgb(82, 82, 98);
+    font-size: 14px;
+    font-family: 'poppins';
+}
+.add-product-price{
+    display: flex;
+    gap:40px;
+
+}
+.addproduct-selector{
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+    font-size:14px;
+    color: rgb(126, 114, 137);
+    border: 1px solid rgb(136, 102, 60);
+    border-radius: 5px;
+}
+.addproduct-thambnil-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: contain;
+    margin: 10px 0px;
+}
+.addbutton-btn{
+    padding: 10px 0px;
+    width: 160px;
+    height: 50px;
+    border-radius: 8px;
+    background: rgb(6, 159, 236);
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+@media(max-width:800px){
+    .add-product{
+        width: auto;
+        padding: 30px;
+        margin: 20px;
+    }
+}
+
+
+import React, { useEffect, useState } from 'react'
+import './Listproduct.css'
+import cross_icon from '../../assets/cross_icon.png'
+const Listproduct = () => {
+  const[allproduct,setAllProduct]=useState([])
+  const fechInfo=async ()=>{
+    await fetch('http://localhost:4000/allproducts').then((res)=>res.json()).then((data)=>{
+      setAllProduct(data)})
+   
+  }
+  useEffect(()=>{
+    fechInfo();
+  },[])
+  const remove_product=async(id)=>{
+    await fetch('http://localhost:4000/removeproduct',{
+      method:'POST',
+      headers:{
+        Accept:'applicatin/json',
+        'Content-type':"application/json",
+      },
+      body:JSON.stringify({id:id})
+    })
+    await fechInfo();
+  }
+  return (
+    <div className='listproduct'>
+      <h1>All Products List</h1>
+      <div className="list-product-format-main">
+        <p>Products</p>
+        <p>Titles</p>
+        <p>Old_price</p>
+        <p>New_price</p>
+        <p>Category</p>
+        <p>Remove</p>
+      </div>
+      <div className="listproduct-allproduct">
+        <hr />
+        {allproduct.map((product,index)=>{
+        return<> <div key={index} className="list-product-format-main listproduct-allproduct">
+       <img src={product.image} alt="" className="lisproduct-productIcon" />
+       <p>{product.name}</p>
+       <p>${product.old_price}</p>
+       <p>${product.new_price}</p>
+       <p>{product.category}</p>
+       <img onClick={()=>{remove_product(product.id)}} src={cross_icon} alt="notdisplay"className='remove-icon' />
+        </div>
+        <hr />
+        </>
+        })}
+      </div>
+    </div>
+  )
+}
+
+export default Listproduct
+css
+
+.listproduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 740px;
+    padding: 10px 20px;
+    margin: 30px;
+    border-radius: 6px;
+    background-color:white;
+}
+.list-product-format-main{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    padding: 20px 0px;
+    color: #454545;
+    font-size: 15px;
+    font-weight: 600;
+}
+.listproduct-allproduct{
+    align-items: center;
+    font-weight: 500;
+}
+.lisproduct-productIcon{
+    height: 80px;
+}
+.remove-icon{
+    margin: auto;
+    cursor: pointer;
+}
+.listproduct-allproduct{
+    overflow-y: auto;
+}
+@media(max-width:800px){
+    .listproduct{
+        width: 95%;
+        height: 100%;
+       padding: 10px 30px;
+        box-sizing: border-box;
+        margin: 20px auto;
+
+    }
+    .list-product-format-main{
+        padding: 15px 0px;
+        color: #454545;
+        font-size: 12px;
+    }
+    .lisproduct-productIcon{
+        height: 60px;
+    }
+}
+
+navbar
+
+import React from 'react'
+import './Navbar.css'
+import navlog from '../../assets/nav-logo.svg'
+import navprofile from '../../assets/sabo.jpg'
+const Navbar = () => {
+  return (
+    <div className='navbar'>
+      <img src={navlog} alt="" className='nav-logo' />
+      <img src={navprofile} alt="" className='nav-profile'/>
+    </div>
+  )
+}
+
+export default Navbar
+
+
+css
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 60px;
+    box-shadow: 0 1px 3px -2px black;
+    margin-bottom: 1px;
+    background: white;
+}
+.nav-logo{
+    width: 200px;
+}
+.nav-profile{
+    width: 80px;
+    border-radius: 50%;
+    height: 80px;
+}
+@media(max-width:800px){
+.navbar{
+    padding: 15px 30px;
+}
+.nav-logo{
+    width: 150px;
+}
+.nav-profile{
+    width: 60px;
+}
+}
+
+side bar
+
+import React from 'react';
+import './Sidebar.css';
+import { Link } from 'react-router-dom';
+import addProductImage from '../../assets/Product_Cart.svg'; // Assuming the image represents "Add Product"
+import listPro from '../../assets/Product_list_icon.svg';
+const Sidebar = () => {
+  return (
+    <div className='sidebar'>
+      <Link to="/addproduct" style={{ textDecoration: 'none' }}>
+        <div className="sidebar-item">
+          <img src={addProductImage} alt="Add Product" /> 
+        <p>add product</p>
+        </div>
+      </Link>
+      <Link to="/listproduct" style={{ textDecoration: 'none' }}>
+        <div className="sidebar-item">
+          <img src={listPro} alt="Add Product" /> 
+       <p>list product</p>
+        </div>
+      </Link>
+    </div>
+  );
+};
+
+export default Sidebar;
+
+
+css
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    width: 100%;
+    gap: 20px;
+    max-width: 250px;
+    height: 100vh;
+    background: white;
+}
+@media(max-width:800px){
+    .sidebar{
+        height: auto;
+        padding: 30px 0px;
+        width: 100%;
+        justify-content: center;
+        flex-direction: row;
+        max-width: none;
+    }
+    .sidebar-item{
+        margin: 0;
+    }
+}
+
+Admin
+
+import React from 'react'
+import './Admin.css'
+import Sidebar from '../../components/Sidebar/Sidebar'
+import { Routes,Route } from 'react-router-dom'
+import Addproduct from '../../components/Addproduct/Addproduct'
+import Listproduct from '../../components/Listproduct/Listproduct'
+const Admin = () => {
+  return (
+    <div className='admin'>
+      <Sidebar/>
+      <Routes>
+        <Route path='/addproduct' element={<Addproduct/>}/>
+        <Route path='/listproduct' element={<Listproduct/>}/>
+      </Routes>
+    </div>
+  )
+}
+
+export default Admin
+
+
+
+.admin{
+    display: flex;
+}
+@media(max-width:800px){
+   .admin{
+    flex-direction: column;
+   }
+}
+
+index
+
+body{
+  margin: 0;
+  height: 100vh;
+  font-family: "poppins";
+  background-color: rgb(209, 205, 205);
+}
+
+main
+
+
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import {BrowserRouter} from 'react-router-dom'
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter><App /></BrowserRouter>
+   
+  </React.StrictMode>,
+)
+
+
+app
+
+import React from 'react'
+import Navbar from './components/Navbar/Navbar'
+import Admin from './pages/Admin/Admin'
+
+const App = () => {
+  return (
+    <div>
+      <Navbar/>
+      <Admin/>
+    </div>
+  )
+}
+
+export default App
+
+
